@@ -72,7 +72,10 @@ public class Layer {
 
         /* Function to set the inputs of this layer */
         void setInputs(float[] tempInputs){
-            layerINPUTs=tempInputs;
+            this.layerINPUTs=new float[tempInputs.length];
+            for (int i = 0; i <tempInputs.length ; i++) {
+                this.layerINPUTs[i]=tempInputs[i];
+            }
         }
 
 
@@ -130,10 +133,10 @@ public class Layer {
     /* Reset the layer error to 0 before cycling through each neuron */
             setLayerError(0);
             for(int i=0; i<neuronCount;i++){
-                neurons.get(i).deltaError = actualOUTPUTs[i]*(1-actualOUTPUTs[i])*(expectedOUTPUTs[i]-actualOUTPUTs[i]);
+                neurons.get(i).deltaError = actualOUTPUTs[i]*(1-actualOUTPUTs[i])*(expectedOUTPUTs[0]-actualOUTPUTs[i]);
 
        /* Increase the layer Error by the absolute difference between the calculated value (actualOUTPUT) and the expected value (expectedOUTPUT). */
-                increaseLayerErrorBy(abs(expectedOUTPUTs[i]-actualOUTPUTs[i]));
+                increaseLayerErrorBy(abs(expectedOUTPUTs[0]-actualOUTPUTs[i]));
             }
         }
 

@@ -47,7 +47,10 @@ public class NeuralNetwork {
 
         /* Function to set the inputs of the neural network */
         void setInputs(float[] tempInputs){
-            arrayOfInputs=tempInputs;
+            arrayOfInputs=new float[tempInputs.length];
+            for (int i = 0; i <tempInputs.length ; i++) {
+                this.arrayOfInputs[i]=tempInputs[i];
+            }
         }
 
 
@@ -83,7 +86,8 @@ public class NeuralNetwork {
 
     /* Check to make sure that the number of NeuralNetwork inputs matches the Neuron Connection Count in the first layer. */
             if(getLayerCount()>0){
-                if(arrayOfInputs.length!=layers.get(0).neurons.get(0).getConnectionCount()){
+                if(arrayOfInputs.length!=layers.get(0).neurons.get(0).getConnectionCount())
+                {
                     System.out.println("NN Error: processInputsToOutputs: The number of inputs do NOT match the NN");
                     System.exit(0);
                 } else {
