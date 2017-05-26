@@ -38,13 +38,9 @@ import javax.imageio.ImageIO;
                     try {
                         img = ImageIO.read(f);
                         convertImageToArray(img,myTrainingInputs,myTrainingOutputs);
+                      System.out.println("Read Image: " + f.getName());
+                        imagesRead++;
 
-                        // you probably want something more involved here
-                        // to display in your UI
-                        System.out.println("image: " + f.getName());
-                        System.out.println(" width : " + img.getWidth());
-                        System.out.println(" height: " + img.getHeight());
-                        System.out.println(" size  : " + f.length());
                     } catch (final IOException e) {
                         // handle errors here
                     }
@@ -80,5 +76,8 @@ import javax.imageio.ImageIO;
 
         }
 
+        public int getImageCouter() {
+            return imagesRead;
+        }
     }
 
