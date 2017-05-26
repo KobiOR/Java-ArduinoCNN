@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 
     public class DataSetCreator {
 
+        static int imagesRead=0;
         static final File dir = new File("C:\\Users\\orrko_000\\Desktop\\DataSetToRead");
         static final String[] EXTENSIONS = new String[]{"gif", "png", "bmp","jpeg","jpg" };
 
