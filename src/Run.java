@@ -12,15 +12,17 @@ public class Run {
     static int HEIGHT=10;
     static int DIMENSION=3;
     static int CNN_DIMENSION=WIDTH*HEIGHT*DIMENSION;
+    static DataSetCreator dataCreator=new DataSetCreator();
 
     public static void main(String[] args) throws IOException {
         ArrayList myTrainingInputs = new ArrayList();
         ArrayList myTrainingOutputs = new ArrayList();
 
+        dataCreator.start(myTrainingInputs,myTrainingOutputs);
 
         File f=new File("C:\\Users\\orrko_000\\Desktop\\a.jpg");
-        BufferedImage hugeImage = ImageIO.read(f);
-       convertImageToArray(hugeImage,myTrainingInputs,myTrainingOutputs);
+     //   BufferedImage hugeImage = ImageIO.read(f);
+       //convertImageToArray(hugeImage,myTrainingInputs,myTrainingOutputs);
 
 
 
