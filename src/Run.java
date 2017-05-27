@@ -26,7 +26,7 @@ public class Run {
         NN.addLayer(900, 2);
 
         System.out.println("Begin Training");
-        NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.01f, 1);
+        NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.1f, 10);
         System.out.println("Train end; "+dataCreator.getImageCounter()+" Images had transformed");
 
         //TEST

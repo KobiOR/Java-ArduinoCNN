@@ -1,6 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -44,6 +42,51 @@ public class WriteWeightToFile {
 
 
     }
+    public NeuralNetwork readCNN(String file)
+    {
+        NeuralNetwork NN=new NeuralNetwork();
+        NN.layers= new ArrayList<Layer>();
+        BufferedReader br = null;
+        FileReader fr = null;
 
+        try {
+
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+
+            String sCurrentLine;
+
+            br = new BufferedReader(new FileReader(FILE_NAME));
+
+            while ((sCurrentLine = br.readLine()) != null) {
+                System.out.println(sCurrentLine);
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+
+                if (br != null)
+                    br.close();
+
+                if (fr != null)
+                    fr.close();
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
+            }
+}
+
+
+
+
+
+    }
 
 }
