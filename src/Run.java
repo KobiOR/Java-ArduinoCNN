@@ -26,7 +26,7 @@ public class Run {
         NN.addLayer(900, 2);
 
         System.out.println("Begin Training");
-        NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.01f, 1000);
+        NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.01f, 1);
         System.out.println("Train end; "+dataCreator.getImageCounter()+" Images had transformed");
 
         //TEST
@@ -37,6 +37,9 @@ public class Run {
         NN.processInputsToOutputs((float[]) myTrainingInputs.get(1));
         float[] myOutputDataA2=NN.getOutputs();
         System.out.println("Feed Forward:  INPUT = RED; OUTPUT=" + myOutputDataA2[0]);
+
+        WriteWeightToFile writer = new WriteWeightToFile();
+        writer.writeCNN(NN);
     }
 
     }
