@@ -64,21 +64,15 @@ public class NeuralNetwork {
             }
         }
 
-
-
         /* Function to set the outputs of the neural network */
         void setOutputs(float[] tempOutputs){
             arrayOfOutputs=tempOutputs;
         }
 
-
-
         /* Function to return the outputs of the Neural Network */
         float[] getOutputs(){
             return arrayOfOutputs;
         }
-
-
 
         /* Function to process the Neural Network's input values and convert them to an output pattern using ALL layers in the network */
         void processInputsToOutputs(float[] tempInputs){
@@ -114,9 +108,6 @@ public class NeuralNetwork {
             }
         }
 
-
-
-
         /* Function to train the entire network using an array. */
         void trainNetwork(float[] inputData, float[] expectedOutputData){
     /* Populate the ENTIRE network by processing the inputData. */
@@ -148,10 +139,6 @@ public class NeuralNetwork {
             }
         }
 
-
-
-
-
         /* Function to train the entire network, using an array of input and expected data within an ArrayList */
         void trainingCycle(ArrayList trainingInputData, ArrayList trainingExpectedData, Boolean trainRandomly){
             int dataIndex;
@@ -173,10 +160,6 @@ public class NeuralNetwork {
                 trainingError+=abs(networkError);
             }
         }
-
-
-
-
 
         /* Function to train the network until the Error is below a specific threshold */
         void autoTrainNetwork(ArrayList trainingInputData, ArrayList trainingExpectedData, float trainingErrorTarget, int cycleLimit){

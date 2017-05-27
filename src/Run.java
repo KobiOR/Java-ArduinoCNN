@@ -21,12 +21,22 @@ public class Run {
         dataCreator.start(myTrainingInputs,myTrainingOutputs);
 
         NeuralNetwork NN = new NeuralNetwork();
-        NN.addLayer(30, 30);
+        NN.addLayer(300, 300);
+        NN.addLayer(300, 900);
+        NN.addLayer(900, 2);
 
         System.out.println("Begin Training");
-        NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.0001f, 15);
+        NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.0001f, 1000);
         System.out.println("Train end; "+dataCreator.getImageCounter()+" Images had transformed");
 
+        //TEST
+        NN.processInputsToOutputs((float[]) myTrainingInputs.get(0));
+        float[] myOutputDataA1=NN.getOutputs();
+        System.out.println("Feed Forward:  INPUT = 0,0; OUTPUT=" + myOutputDataA1[0]);
+
+        NN.processInputsToOutputs((float[]) myTrainingInputs.get(1));
+        float[] myOutputDataA2=NN.getOutputs();
+        System.out.println("Feed Forward:  INPUT = 0,0; OUTPUT=" + myOutputDataA2[0]);
     }
 
     }

@@ -48,9 +48,10 @@ import javax.imageio.ImageIO;
                     tempList.add(green);
                     tempList.add(blue);
                 }
+            }
                 float[] arr=new float[tempList.size()];
                 for (int j = 0; j <tempList.size() ; j++) {
-                    arr[i]=tempList.get(i);
+                    arr[j]=tempList.get(j);
                 }
                 inputList.add(arr);
                 if (light)
@@ -61,8 +62,6 @@ import javax.imageio.ImageIO;
                 tempList.clear();
             }
 
-
-        }
 
         public int getImageCounter() {
             return imagesRead;
