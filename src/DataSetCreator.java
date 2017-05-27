@@ -12,7 +12,9 @@ import javax.imageio.ImageIO;
     public class DataSetCreator {
 
         static int imagesRead=0;
-        static final File dir = new File("C:\\Users\\orrko_000\\Desktop\\DataSetToRead");
+        static final File GREEN_DIR = new File("C:\\Users\\orrko_000\\Desktop\\a\\1");
+        static final File RED_DIR= new File("C:\\Users\\orrko_000\\Desktop\\a\\2");
+
         static final String[] EXTENSIONS = new String[]{"gif", "png", "bmp","jpeg","jpg" };
 
         static final FilenameFilter IMAGE_FILTER = new FilenameFilter()
@@ -29,26 +31,8 @@ import javax.imageio.ImageIO;
             }
         };
 
-        public static void start(ArrayList myTrainingInputs, ArrayList myTrainingOutputs) {
 
-            if (dir.isDirectory()) {
-                for (final File f : dir.listFiles(IMAGE_FILTER)) {
-                    BufferedImage img = null;
-
-                    try {
-                        img = ImageIO.read(f);
-                        convertImageToArray(img,myTrainingInputs,myTrainingOutputs);
-                      System.out.println("Read Image: " + f.getName());
-                        imagesRead++;
-
-                    } catch (final IOException e) {
-                        // handle errors here
-                    }
-                }
-            }
-        }
-
-        private static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList) {
+        private static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList,boolean light) {
 
             ArrayList<Float> tempList=new ArrayList<Float>();
             final int width = image.getWidth();
@@ -69,15 +53,57 @@ import javax.imageio.ImageIO;
                     arr[i]=tempList.get(i);
                 }
                 inputList.add(arr);
+                if (light)
                 outputList.add(new float[]{0});
+                else
+                outputList.add(new float[]{1});
+
                 tempList.clear();
             }
 
 
         }
 
-        public int getImageCouter() {
+        public int getImageCounter() {
             return imagesRead;
+        }
+        public void start(ArrayList myTrainingInputs, ArrayList myTrainingOutputs){
+
+                if (RED_DIR.isDirectory()) {
+                    for (final File f : RED_DIR.listFiles(IMAGE_FILTER)) {
+                        BufferedImage img = null;
+
+                        try {
+                            img = ImageIO.read(f);
+                            convertImageToArray(img,myTrainingInputs,myTrainingOutputs,false);
+                            System.out.println("Read Image: " + f.getName());
+                            imagesRead++;
+
+                        } catch (final IOException e) {
+                            // handle errors here
+                        }
+                    }
+                }
+            if (GREEN_DIR.isDirectory()) {
+                for (final File f : GREEN_DIR.listFiles(IMAGE_FILTER)) {
+                    BufferedImage img = null;
+
+                    try {
+                        img = ImageIO.read(f);
+                        convertImageToArray(img,myTrainingInputs,myTrainingOutputs,true);
+                        System.out.println("Read Image: " + f.getName());
+                        imagesRead++;
+
+                    } catch (final IOException e) {
+                        // handle errors here
+                    }
+                }
+            }
+
+
+
+
+
         }
     }
 

@@ -25,7 +25,7 @@ public class Run {
 
         System.out.println("Begin Training");
         NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.0001f, 15);
-        System.out.println("Train end; "+dataCreator.getImageCouter()+" Images had transformed");
+        System.out.println("Train end; "+dataCreator.getImageCounter()+" Images had transformed");
 
     }
 
