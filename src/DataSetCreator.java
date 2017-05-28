@@ -55,7 +55,7 @@ import javax.imageio.ImageIO;
                 }
                 inputList.add(arr);
                 if (light)
-                outputList.add(new float[]{0});
+                outputList.add(new float[]{5});
                 else
                 outputList.add(new float[]{1});
 
