@@ -8,15 +8,15 @@ public class WriteWeightToFile {
     private static final String FILE_NAME = "C:\\Users\\orrko_000\\Desktop\\weights.text";
 
     public void writeCNN(NeuralNetwork CNN) throws IOException {
-        ArrayList<Layer> layers=CNN.layers;
+        ArrayList<Layer> layers = CNN.layers;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME))) {
 
             bw.write(String.valueOf(layers.size()));
-            for (int i = 0; i <layers.size();  i++) {
+            for (int i = 0; i < layers.size(); i++) {
                 bw.write(String.valueOf(layers.get(i).neurons.size()));
-                for (int j = 0; j <layers.get(i).neurons.size() ; j++) {
+                for (int j = 0; j < layers.get(i).neurons.size(); j++) {
                     bw.write(String.valueOf(layers.get(i).neurons.get(j).bias));
-                    for (int k = 0; k <layers.get(i).neurons.get(j).connections.size(); k++) {
+                    for (int k = 0; k < layers.get(i).neurons.get(j).connections.size(); k++) {
                         bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.get(k).connEntry));
                         bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.get(k).connExit));
                         bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.get(k).weight));
@@ -39,13 +39,11 @@ public class WriteWeightToFile {
         }
 
 
-
-
     }
-    public NeuralNetwork readCNN(String file)
-    {
-        NeuralNetwork NN=new NeuralNetwork();
-        NN.layers= new ArrayList<Layer>();
+
+    public NeuralNetwork readCNN(String file) {
+        NeuralNetwork NN = new NeuralNetwork();
+        NN.layers = new ArrayList<Layer>();
         BufferedReader br = null;
         FileReader fr = null;
 
@@ -81,12 +79,9 @@ public class WriteWeightToFile {
                 ex.printStackTrace();
 
             }
-}
-
-
-
+        }
+        return NN;
 
 
     }
-
 }
