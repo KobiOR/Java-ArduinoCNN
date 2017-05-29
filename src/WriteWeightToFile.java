@@ -40,7 +40,6 @@ public class WriteWeightToFile {
 
 
     }
-
     public NeuralNetwork readCNN(String file) {
         NeuralNetwork NN = new NeuralNetwork();
         NN.layers = new ArrayList<Layer>();

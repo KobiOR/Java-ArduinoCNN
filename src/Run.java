@@ -1,4 +1,5 @@
 
+import javax.rmi.CORBA.Util;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,10 +19,10 @@ public class Run {
         if (Utils.LEARNING_STATE) {
             dataCreator.start(myTrainingInputs, myTrainingOutputs);
             NN = new NeuralNetwork();
-            NN.2(300, 300);
-            NN.addLayer(300, 900);
-            NN.addLayer(900, 1800);
-            NN.addLayer(1800, 2);
+            NN.addLayer(300, 300);
+          //  NN.addLayer(300, 900);
+         //   NN.addLayer(900, 1800);
+            NN.addLayer(300, 2);
         }
         else {
             WriteWeightToFile writer=new WriteWeightToFile();
@@ -33,7 +34,7 @@ public class Run {
 
         }
         System.out.println("Begin Training");
-        NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.1f, 1);
+        NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, Utils.LEARNING_RATE, Utils.CYCLE_LIMIT);
         System.out.println("Train end; "+dataCreator.getImageCounter()+" Images had transformed");
 
         //TEST
