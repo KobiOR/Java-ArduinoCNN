@@ -11,7 +11,6 @@ import javax.imageio.ImageIO;
 
 public class DataSetCreator {
 
-        static int imagesRead=0;
 
         static final FilenameFilter IMAGE_FILTER = new FilenameFilter()
         {
@@ -58,7 +57,7 @@ public class DataSetCreator {
                 tempList.clear();
             }
         public int getImageCounter() {
-            return imagesRead;
+            return Utils.imagesRead;
         }
         public void start(ArrayList myTrainingInputs, ArrayList myTrainingOutputs){
 
@@ -70,7 +69,7 @@ public class DataSetCreator {
                             img = ImageIO.read(f);
                             convertImageToArray(img,myTrainingInputs,myTrainingOutputs,false);
                             System.out.println("Read Image: " + f.getName());
-                            imagesRead++;
+                            Utils.imagesRead++;
 
                         } catch (final IOException e) {
                             // handle errors here
@@ -85,7 +84,7 @@ public class DataSetCreator {
                         img = ImageIO.read(f);
                         convertImageToArray(img,myTrainingInputs,myTrainingOutputs,true);
                         System.out.println("Read Image: " + f.getName());
-                        imagesRead++;
+                        Utils.imagesRead++;
 
                     }
                     catch (final IOException e) {
