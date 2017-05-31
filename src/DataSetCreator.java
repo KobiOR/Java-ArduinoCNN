@@ -2,6 +2,7 @@
  * Created by orrko_000 on 26/05/2017.
  */
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -27,7 +28,7 @@ public class DataSetCreator {
         };
 
 
-        private static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList,boolean light) {
+    private static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList,boolean light) {
 
             ArrayList<Float> tempList=new ArrayList<Float>();
             final int width = image.getWidth();
@@ -53,13 +54,12 @@ public class DataSetCreator {
                 outputList.add(new float[]{5});
                 else
                 outputList.add(new float[]{1});
-
                 tempList.clear();
             }
-        public int getImageCounter() {
+    public int getImageCounter() {
             return Utils.imagesRead;
         }
-        public void start(ArrayList myTrainingInputs, ArrayList myTrainingOutputs){
+    public void start(ArrayList myTrainingInputs, ArrayList myTrainingOutputs){
 
                 if (Utils.RED_DIR.isDirectory()) {
                     for (final File f : Utils.RED_DIR.listFiles(IMAGE_FILTER)) {
@@ -67,6 +67,7 @@ public class DataSetCreator {
 
                         try {
                             img = ImageIO.read(f);
+                            img = this.getScaledImage(img);
                             convertImageToArray(img,myTrainingInputs,myTrainingOutputs,false);
                             System.out.println("Read Image: " + f.getName());
                             Utils.imagesRead++;
@@ -82,6 +83,8 @@ public class DataSetCreator {
 
                     try {
                         img = ImageIO.read(f);
+                        img = this.getScaledImage(img);
+
                         convertImageToArray(img,myTrainingInputs,myTrainingOutputs,true);
                         System.out.println("Read Image: " + f.getName());
                         Utils.imagesRead++;
@@ -94,5 +97,13 @@ public class DataSetCreator {
             }
 
         }
+    private BufferedImage getScaledImage(Image srcImg){
+        BufferedImage resizedImg = new BufferedImage(Utils.WIDTH,Utils.HEIGHT , Transparency.TRANSLUCENT);
+        Graphics2D g2 = resizedImg.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(srcImg, 0, 0, Utils.WIDTH, Utils.HEIGHT, null);
+        g2.dispose();
+        return resizedImg;
     }
+}
 
