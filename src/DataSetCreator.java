@@ -57,7 +57,6 @@ public class DataSetCreator {
 
                 tempList.clear();
             }
-
         public int getImageCounter() {
             return imagesRead;
         }
