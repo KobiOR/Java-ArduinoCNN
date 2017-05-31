@@ -5,10 +5,6 @@ import java.util.ArrayList;
 
 public class Run {
 
-    static int WIDTH=10;
-    static int HEIGHT=10;
-    static int DIMENSION=3;
-    static int CNN_DIMENSION=WIDTH*HEIGHT*DIMENSION;
     static DataSetCreator dataCreator=new DataSetCreator();
 
     public static void main(String[] args) throws IOException {
@@ -19,10 +15,11 @@ public class Run {
         if (Utils.LEARNING_STATE) {
             dataCreator.start(myTrainingInputs, myTrainingOutputs);
             NN = new NeuralNetwork();
-            NN.addLayer(300, 300);
-          //  NN.addLayer(300, 900);
-         //   NN.addLayer(900, 1800);
-            NN.addLayer(300, 2);
+            NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
+            NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION*3);
+            NN.addLayer(Utils.CNN_DIMENSION*3, 2);
+            System.out.println("Finish create the Neural Network");
+
         }
         else {
             WriteWeightToFile writer=new WriteWeightToFile();

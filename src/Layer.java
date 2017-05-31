@@ -9,15 +9,17 @@ public class Layer {
 
 
         ArrayList<Neuron> neurons=new ArrayList<Neuron>();
-        float[] layerINPUTs;int layerINPUTsSize=0;
+        float[] layerINPUTs;
         float[] actualOUTPUTs;int actualOUTPUTsSize=0;
-        float[] expectedOUTPUTs;int expectedOUTPUTsSize=0;
+        float[] expectedOUTPUTs;
         float layerError;
         float learningRate;
+        int numberConnections;
 
 
         /* This is the default constructor for the Layer */
         Layer(int numberConnections, int numberNeurons){
+          this.numberConnections=numberConnections;
     /* Add all the neurons and actualOUTPUTs to the layer */
             for(int i=0; i<numberNeurons; i++){
                 Neuron tempNeuron = new Neuron(numberConnections);

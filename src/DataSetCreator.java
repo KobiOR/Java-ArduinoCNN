@@ -9,20 +9,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
-    public class DataSetCreator {
+public class DataSetCreator {
 
         static int imagesRead=0;
-        static final File GREEN_DIR = new File("C:\\Users\\orrko_000\\Desktop\\a\\1");
-        static final File RED_DIR= new File("C:\\Users\\orrko_000\\Desktop\\a\\2");
-
-        static final String[] EXTENSIONS = new String[]{"gif", "png", "bmp","jpeg","jpg" };
 
         static final FilenameFilter IMAGE_FILTER = new FilenameFilter()
         {
             @Override
             public boolean accept(final File dir, final String name)
             {
-                for (final String ext : EXTENSIONS) {
+                for (final String ext : Utils.EXTENSIONS) {
                     if (name.endsWith("." + ext)) {
                         return (true);
                     }
@@ -62,14 +58,13 @@ import javax.imageio.ImageIO;
                 tempList.clear();
             }
 
-
         public int getImageCounter() {
             return imagesRead;
         }
         public void start(ArrayList myTrainingInputs, ArrayList myTrainingOutputs){
 
-                if (RED_DIR.isDirectory()) {
-                    for (final File f : RED_DIR.listFiles(IMAGE_FILTER)) {
+                if (Utils.RED_DIR.isDirectory()) {
+                    for (final File f : Utils.RED_DIR.listFiles(IMAGE_FILTER)) {
                         BufferedImage img = null;
 
                         try {
@@ -83,8 +78,8 @@ import javax.imageio.ImageIO;
                         }
                     }
                 }
-            if (GREEN_DIR.isDirectory()) {
-                for (final File f : GREEN_DIR.listFiles(IMAGE_FILTER)) {
+            if (Utils.GREEN_DIR.isDirectory()) {
+                for (final File f : Utils.GREEN_DIR.listFiles(IMAGE_FILTER)) {
                     BufferedImage img = null;
 
                     try {
@@ -93,15 +88,12 @@ import javax.imageio.ImageIO;
                         System.out.println("Read Image: " + f.getName());
                         imagesRead++;
 
-                    } catch (final IOException e) {
+                    }
+                    catch (final IOException e) {
                         // handle errors here
                     }
                 }
             }
-
-
-
-
 
         }
     }

@@ -9,26 +9,16 @@ public class WriteWeightToFile {
     public void writeCNN(NeuralNetwork CNN) throws IOException {
         ArrayList<Layer> layers = CNN.layers;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Utils.WEIGHTS_DIRECTORY))) {
+            bw.write(String.valueOf(layers.size()));//WRITE NUMBER Of LAYERS
+            bw.newLine();
+            for (int i = 0; i <layers.size() ; i++) {
+                bw.write(String.valueOf(layers.get(i).numberConnections));//WRITE NUMBER Of connections
+                bw.newLine();
+                bw.write(String.valueOf(layers.get(i).neurons.size()));//WRITE NUMBER Of NEURONS
+                bw.newLine();
 
-            bw.write(String.valueOf(layers.size()));
-            for (int i = 0; i < layers.size(); i++) {
-                bw.write(String.valueOf(layers.get(i).neurons.size()));
-                for (int j = 0; j < layers.get(i).neurons.size(); j++) {
-                    bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.size()));
-                    for (int k = 0; k < layers.get(i).neurons.get(j).connections.size(); k++) {
-                        bw.write(String.valueOf(layers.get(i).neurons.get(j).bias));
-                        bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.get(k).connEntry));
-                        bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.get(k).connExit));
-                        bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.get(k).weight));
 
-                    }
-                }
-
-            }//WRITE NUMBER OF  LAYERS
-            bw.write(String.valueOf(layers.size()));//WRITE NUMBER OF  LAYERS
-
-            // no need to close it.
-            //bw.close();
+            }
 
             System.out.println("Done");
 
@@ -52,10 +42,28 @@ public class WriteWeightToFile {
             String sCurrentLine;
             br = new BufferedReader(new FileReader(Utils.WEIGHTS_DIRECTORY));
 
+
+//            for (int i = 0; i < layers.size(); i++) {
+//                bw.write(String.valueOf(layers.get(i).neurons.size()));
+//                for (int j = 0; j < layers.get(i).neurons.size(); j++) {
+//                    bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.size()));
+//                    for (int k = 0; k < layers.get(i).neurons.get(j).connections.size(); k++) {
+//                        bw.write(String.valueOf(layers.get(i).neurons.get(j).bias));
+//                        bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.get(k).connEntry));
+//                        bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.get(k).connExit));
+//                        bw.write(String.valueOf(layers.get(i).neurons.get(j).connections.get(k).weight));
+//
+//                    }
+//                }
+//
+
             char  []temp=new char[4];
             int numberOfLayers=br.read(temp);
             for (int i = 0; i <numberOfLayers ; i++) {
                 int numberOfNeurons=br.read(temp);
+                for (int j = 0; j <numberOfNeurons ; j++) {
+
+                }
                 NN.layers.add(new Layer(numberOfNeurons,numberOfNeurons));
                 for (int j = 0; j <numberOfNeurons ; j++) {
 
@@ -91,4 +99,7 @@ public class WriteWeightToFile {
 
 
     }
+
+
+
 }
