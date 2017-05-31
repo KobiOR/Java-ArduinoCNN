@@ -176,10 +176,13 @@ variable (eg. 10000). */
                 trainingError=0;
 
       /* Cycle through the training data randomly */
+                System.out.println("Cycle number : "+trainingCounter);
+                System.out.println("Train error : "+trainingError);
                 trainingCycle(trainingInputData, trainingExpectedData, true);
 
       /* increment the training counter to prevent endless loop */
                 trainingCounter++;
+
             }
 
     /* Due to the random nature in which this neural network is trained. There may be occasions when the training error may drop below the threshold
@@ -187,8 +190,11 @@ variable (eg. 10000). */
        If the training error is still below the trainingErrorTarget, then we will end the training session.
        If the training error is above the trainingErrorTarget, we will continue to train. It will do this check a  Maximum of 9 times. */
             if(trainingCounter<cycleLimit){
+                System.out.println("Cycle number : "+trainingCounter);
+                System.out.println("Train error : "+trainingError);
                 trainingCycle(trainingInputData, trainingExpectedData, false);
                 trainingCounter++;
+
 
                 if(trainingError>trainingErrorTarget){
                     if (retrainChances<10){

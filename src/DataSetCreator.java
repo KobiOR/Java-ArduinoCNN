@@ -28,7 +28,8 @@ public class DataSetCreator {
         };
 
 
-    private static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList,boolean light) {
+    public static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList,boolean light)
+    {
 
             ArrayList<Float> tempList=new ArrayList<Float>();
             final int width = image.getWidth();
@@ -97,7 +98,7 @@ public class DataSetCreator {
             }
 
         }
-    private BufferedImage getScaledImage(Image srcImg){
+    public BufferedImage getScaledImage(Image srcImg){
         BufferedImage resizedImg = new BufferedImage(Utils.WIDTH,Utils.HEIGHT , Transparency.TRANSLUCENT);
         Graphics2D g2 = resizedImg.createGraphics();
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
