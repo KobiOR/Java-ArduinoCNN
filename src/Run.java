@@ -35,7 +35,7 @@ public class Run {
 
         //TEST
         testImage(ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\black.png")),1.0f,NN,true);
-        testImage(ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\white.png")),0.0f,NN,false);
+        testImage(ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\white.png")),1.0f,NN,false);
 
 
         try {
