@@ -52,9 +52,9 @@ public class DataSetCreator {
                 }
                 inputList.add(arr);
                 if (light)
-                outputList.add(new float[]{0});
+                outputList.add(Utils.GREEN_CLASSIFICATION);
                 else
-                outputList.add(new float[]{1});
+                outputList.add(Utils.RED_CLASSIFICATION);
                 tempList.clear();
             }
     public int getImageCounter() {
