@@ -16,8 +16,8 @@ public final class Utils {
     public static final String RED_LIGHT_DIRECTORY="2";
     public static final String WEIGHTS_DIRECTORY = "weights.text";
     public static boolean LEARNING_STATE=true;
-    public static int CYCLE_LIMIT=2;
-    public static float LEARNING_RATE=0.001f;
+    public static int CYCLE_LIMIT=100;
+    public static float LEARNING_RATE=0.01f;
     static final File GREEN_DIR = new File("Dataset\\1");
     static final File RED_DIR= new File("Dataset\\2");
     static final String[] EXTENSIONS = new String[]{"gif", "png", "bmp","jpeg","jpg" };

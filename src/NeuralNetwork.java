@@ -1,5 +1,3 @@
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,30 +21,18 @@ public class NeuralNetwork {
     /* the default learning rate of a neural network is set to 0.1, which can changed by the setLearningRate(lR) function. */
             learningRate=0.1f;
         }
-
-
-
         /* Function to add a Layer to the Neural Network */
         void addLayer(int numConnections, int numNeurons){
             layers.add(new Layer(numConnections,numNeurons));
         }
-
-
-
         /* Function to return the number of layers in the neural network */
         int getLayerCount(){
             return layers.size();
         }
-
-
-
         /* Function to set the learningRate of the Neural Network */
         void setLearningRate(float tempLearningRate){
             learningRate=tempLearningRate;
         }
-
-
-
         /* Function to set the inputs of the neural network */
         void setInputs(float[] tempInputs){
             arrayOfInputs=new float[tempInputs.length];
@@ -54,9 +40,6 @@ public class NeuralNetwork {
                 this.arrayOfInputs[i]=tempInputs[i];
             }
         }
-
-
-
         /* Function to set the inputs of a specified layer */
         void setLayerInputs(float[] tempInputs, int layerIndex){
             if(layerIndex>getLayerCount()-1){
@@ -65,17 +48,14 @@ public class NeuralNetwork {
                 layers.get(layerIndex).setInputs(tempInputs);
             }
         }
-
         /* Function to set the outputs of the neural network */
         void setOutputs(float[] tempOutputs){
             arrayOfOutputs=tempOutputs;
         }
-
         /* Function to return the outputs of the Neural Network */
         float[] getOutputs(){
             return arrayOfOutputs;
         }
-
         /* Function to process the Neural Network's input values and convert them to an output pattern using ALL layers in the network */
         void processInputsToOutputs(float[] tempInputs){
             setInputs(tempInputs);
@@ -109,7 +89,6 @@ public class NeuralNetwork {
                 System.exit(0);
             }
         }
-
         /* Function to train the entire network using an array. */
         void trainNetwork(float[] inputData, float[] expectedOutputData){
     /* Populate the ENTIRE network by processing the inputData. */
@@ -140,7 +119,6 @@ public class NeuralNetwork {
                 }
             }
         }
-
         /* Function to train the entire network, using an array of input and expected data within an ArrayList */
         void trainingCycle(ArrayList trainingInputData, ArrayList trainingExpectedData, Boolean trainRandomly){
             int dataIndex;
@@ -163,7 +141,6 @@ public class NeuralNetwork {
 
             }
         }
-
         /* Function to train the network until the Error is below a specific threshold */
         void autoTrainNetwork(ArrayList trainingInputData, ArrayList trainingExpectedData, float trainingErrorTarget, int cycleLimit){
             trainingError=9999;

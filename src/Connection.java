@@ -12,21 +12,17 @@ public class Connection {
     Connection(){
         randomiseWeight();
     }
-
     Connection(float tempWeight){
         setWeight(tempWeight);
     }
-
     void setWeight(float tempWeight){
         weight=tempWeight;
     }
-
     //Function to randomise the weight of this connection
     void randomiseWeight(){
         //TODO Check this!
         setWeight(rand.nextFloat()%2-1);
     }
-
     //Function to calculate and store the output of this Connection
     float calcConnExit(float tempInput){
         connEntry = tempInput;

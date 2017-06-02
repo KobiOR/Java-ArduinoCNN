@@ -6,8 +6,6 @@ import static java.lang.Math.abs;
  * Created by orrko_000 on 13/05/2017.
  */
 public class Layer {
-
-
         ArrayList<Neuron> neurons=new ArrayList<Neuron>();
         float[] layerINPUTs;
         float[] actualOUTPUTs;int actualOUTPUTsSize=0;
@@ -15,8 +13,6 @@ public class Layer {
         float layerError;
         float learningRate;
         int numberConnections;
-
-
         /* This is the default constructor for the Layer */
         Layer(int numberConnections, int numberNeurons){
           this.numberConnections=numberConnections;
@@ -27,20 +23,14 @@ public class Layer {
                 addActualOUTPUT();
             }
         }
-
-
         /* Function to add an input or output Neuron to this Layer */
         void addNeuron(Neuron xNeuron){
             neurons.add(xNeuron);
         }
-
-
         /* Function to get the number of neurons in this layer */
         int getNeuronCount(){
             return neurons.size();
         }
-
-
         /* Function to increment the size of the actualOUTPUTs array by one. */
         void addActualOUTPUT(){
             float [] temp=new float[this.actualOUTPUTsSize+1];
@@ -52,26 +42,18 @@ public class Layer {
             this.actualOUTPUTs=temp;
 
         }
-
-
         /* Function to set the ENTIRE expectedOUTPUTs array in one go. */
         void setExpectedOUTPUTs(float[] tempExpectedOUTPUTs){
             expectedOUTPUTs=tempExpectedOUTPUTs;
         }
-
-
         /* Function to clear ALL values from the expectedOUTPUTs array */
         void clearExpectedOUTPUT(){
             expectedOUTPUTs=new float[]{};
         }
-
-
         /* Function to set the learning rate of the layer */
         void setLearningRate(float tempLearningRate){
             learningRate=tempLearningRate;
         }
-
-
         /* Function to set the inputs of this layer */
         void setInputs(float[] tempInputs){
             this.layerINPUTs=new float[tempInputs.length];
@@ -79,12 +61,8 @@ public class Layer {
                 this.layerINPUTs[i]=tempInputs[i];
             }
         }
-
-
-
         /* Function to convert ALL the Neuron input values into Neuron output values in this layer, through a special activation function. */
         void processInputsToOutputs(){
-
     /* neuronCount is used a couple of times in this function. */
             int neuronCount = getNeuronCount();
 
@@ -108,26 +86,18 @@ public class Layer {
                 System.exit(0);
             }
         }
-
-
         /* Function to get the error of this layer */
         float getLayerError(){
             return layerError;
         }
-
-
         /* Function to set the error of this layer */
         void setLayerError(float tempLayerError){
             layerError=tempLayerError;
         }
-
-
         /* Function to increase the layerError by a certain amount */
         void increaseLayerErrorBy(float tempLayerError){
             layerError+=tempLayerError;
         }
-
-
         /* Function to calculate and set the deltaError of each neuron in the layer */
         void setDeltaError(float[] expectedOutputData){
             setExpectedOUTPUTs(expectedOutputData);
@@ -141,8 +111,6 @@ public class Layer {
                 increaseLayerErrorBy(abs(expectedOUTPUTs[0]-actualOUTPUTs[i]));
             }
         }
-
-
         /* Function to train the layer : which uses a training set to adjust the connection weights and biases of the neurons in this layer */
         void trainLayer(float tempLearningRate){
             setLearningRate(tempLearningRate);

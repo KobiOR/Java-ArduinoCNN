@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 public class DataSetCreator {
-
-
         static final FilenameFilter IMAGE_FILTER = new FilenameFilter()
         {
             @Override
@@ -26,8 +24,6 @@ public class DataSetCreator {
                 return (false);
             }
         };
-
-
     public static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList,boolean light)    {
 
             ArrayList<Float> tempList=new ArrayList<Float>();

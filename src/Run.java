@@ -1,7 +1,7 @@
 //Hello world
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,8 +18,8 @@ public class Run {
             dataCreator.start(myTrainingInputs, myTrainingOutputs);
             NN = new NeuralNetwork();
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
-            NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 2);
-            NN.addLayer(Utils.CNN_DIMENSION *2, 2);
+            NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 4);
+            NN.addLayer(Utils.CNN_DIMENSION *4, 2);
             System.out.println("Finish create the Neural Network");
 
         } else {
@@ -54,6 +54,8 @@ public class Run {
         dataCreator.convertImageToArray(img, testList, testListClassification, light);
         NN.processInputsToOutputs((float[]) testList.get(0));
         System.out.println(" OUTPUT=" +  NN.getOutputs()[0]);
+        System.out.println(" OUTPUT=" +  NN.getOutputs()[1]);
+
         //System.out.println(" OUTPUT=" +  NN.getOutputs()[1]);
 
         return 0;
