@@ -16,6 +16,8 @@ public class WriteWeightToFile {
                 bw.newLine();
                 bw.write(String.valueOf(layers.get(i).neurons.size()));//WRITE NUMBER Of NEURONS
                 bw.newLine();
+                bw.write(String.valueOf(layers.get(i).neurons.get(0).neuronInputValue));//WRITE NUMBER Of NEURONS
+
 
 
             }
