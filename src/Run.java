@@ -39,8 +39,8 @@ public class Run {
         ArrayList testListClassification = new ArrayList();
         testListClassification.add((float) 1.0f);
         BufferedImage img = null;
-        BufferedImage image = ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\images.jpg"));
-        img = dataCreator.getScaledImage(img);
+        BufferedImage image = ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\black.png"));
+        img = dataCreator.getScaledImage(image);
         dataCreator.convertImageToArray(img, testList, testListClassification, true);
         NN.processInputsToOutputs((float[]) myTrainingInputs.get(1));
         float[] myOutputDataA2 = NN.getOutputs();

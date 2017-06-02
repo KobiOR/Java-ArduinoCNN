@@ -52,7 +52,7 @@ public class DataSetCreator {
                 }
                 inputList.add(arr);
                 if (light)
-                outputList.add(new float[]{5});
+                outputList.add(new float[]{0});
                 else
                 outputList.add(new float[]{1});
                 tempList.clear();
