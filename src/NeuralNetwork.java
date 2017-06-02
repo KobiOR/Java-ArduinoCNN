@@ -1,3 +1,5 @@
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -148,6 +150,7 @@ public class NeuralNetwork {
 
       /* Cycle through the training data either randomly or sequentially */
             for(int i=0; i<trainingInputData.size(); i++){
+                System.out.print(".");
                 if(trainRandomly){
                     dataIndex= (rand.nextInt(trainingInputData.size()));
                 } else {
@@ -158,6 +161,8 @@ public class NeuralNetwork {
 
         /* Use the networkError variable which is calculated at the end of each individual training session to calculate the entire trainingError. */
                 trainingError+=abs(networkError);
+                System.out.print(".");
+
             }
         }
 
@@ -165,6 +170,7 @@ public class NeuralNetwork {
         void autoTrainNetwork(ArrayList trainingInputData, ArrayList trainingExpectedData, float trainingErrorTarget, int cycleLimit){
             trainingError=9999;
             int trainingCounter=0;
+            System.out.print(".");
 
 
     /* cycle through the training data until the trainingError gets below trainingErrorTarget (eg. 0.0005) or the training cycles have exceeded the cycleLimit
@@ -173,11 +179,13 @@ variable (eg. 10000). */
             while(trainingError>trainingErrorTarget && trainingCounter<cycleLimit){
 
       /* re-initialise the training Error with every cycle */
-                trainingError=0;
-
-      /* Cycle through the training data randomly */
                 System.out.println("Cycle number : "+trainingCounter);
                 System.out.println("Train error : "+trainingError);
+                trainingError=0;
+                System.out.print(".");
+
+      /* Cycle through the training data randomly */
+
                 trainingCycle(trainingInputData, trainingExpectedData, true);
 
       /* increment the training counter to prevent endless loop */
