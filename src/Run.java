@@ -34,25 +34,8 @@ public class Run {
         System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
 
         //TEST
-
-        ArrayList testList = new ArrayList();
-        ArrayList testListClassification = new ArrayList();
-        testListClassification.add((float) 1.0f);
-        BufferedImage image = ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\black.png"));
-        BufferedImage img = dataCreator.getScaledImage(image);
-        dataCreator.convertImageToArray(img, testList, testListClassification, true);
-        NN.processInputsToOutputs((float[]) testList.get(0));
-        float[] myOutputDataA2 = NN.getOutputs();
-        System.out.println(" INPUT = black; OUTPUT=" + myOutputDataA2[0]);
-
-        testListClassification.add((float) 1.0f);
-         image = ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\white.png"));
-         img = dataCreator.getScaledImage(image);
-        dataCreator.convertImageToArray(img, testList, testListClassification, true);
-        NN.processInputsToOutputs((float[]) testList.get(1));
-         myOutputDataA2 = NN.getOutputs();
-        System.out.println(" INPUT = white; OUTPUT=" + myOutputDataA2[0]);
-
+        testImage(ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\black.png")),1.0f,NN,true);
+        testImage(ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\white.png")),0.0f,NN,false);
 
 
         try {
@@ -63,6 +46,18 @@ public class Run {
 
             System.out.print(e.toString());
         }
+    }
+    public static float testImage(BufferedImage image,float classification,NeuralNetwork NN,boolean light){
+
+        ArrayList testList = new ArrayList();
+        ArrayList testListClassification = new ArrayList();
+        testListClassification.add(classification);
+        BufferedImage img = dataCreator.getScaledImage(image);
+        dataCreator.convertImageToArray(img, testList, testListClassification, true);
+        NN.processInputsToOutputs((float[]) testList.get(0));
+        float[] myOutputDataA2 = NN.getOutputs();
+        System.out.println(" OUTPUT=" + myOutputDataA2[0]);
+        return 0;
     }
 }
 
