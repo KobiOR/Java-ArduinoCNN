@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -6,9 +7,11 @@ import static java.lang.Math.abs;
 /**
  * Created by orrko_000 on 13/05/2017.
  */
-public class NeuralNetwork {
+public class NeuralNetwork  implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-        ArrayList<Layer> layers=new ArrayList<Layer>();
+
+    ArrayList<Layer> layers=new ArrayList<Layer>();
         float[] arrayOfInputs={};
         float[] arrayOfOutputs={};
         float learningRate;

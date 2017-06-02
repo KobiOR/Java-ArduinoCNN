@@ -1,9 +1,12 @@
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Created by orrko_000 on 13/05/2017.
  */
-public class Connection {
+public class Connection implements Serializable {
+    private static final long serialVersionUID = 2L;
+
     float connEntry;
     float weight;
     float connExit;

@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -6,7 +7,8 @@ import static java.lang.Math.exp;
 /**
  * Created by orrko_000 on 13/05/2017.
  */
-public class Neuron {
+public class Neuron  implements Serializable {
+    private static final long serialVersionUID = 4L;
 
         ArrayList<Connection> connections=new ArrayList<Connection>();
         float bias;
@@ -60,13 +62,6 @@ public class Neuron {
         float Activation(float x){
             float activatedValue = (float) (1 / (1 + exp(-1 * x)));
             return activatedValue;
-        }
-        public String toFile(){
-        String str;
-            str=String.valueOf(bias)+"."+String.valueOf(neuronInputValue)+"."+String.valueOf(neuronOutputValue) +"."+String.valueOf(deltaError);
-            return str;
-
-
         }
 
     }

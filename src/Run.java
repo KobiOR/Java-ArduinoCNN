@@ -9,8 +9,9 @@ public class Run {
 
     static DataSetCreator dataCreator = new DataSetCreator();
     static NeuralNetwork NN;
+    static WriteObject WO=new WriteObject();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         ArrayList myTrainingInputs = new ArrayList();
         ArrayList myTrainingOutputs = new ArrayList();
 
@@ -23,12 +24,12 @@ public class Run {
             NN.addLayer(Utils.CNN_DIMENSION, 100 );
             NN.addLayer(100 , 2);
 
-
             System.out.println("Finish create the Neural Network");
 
-        } else {
-            WriteWeightToFile writer = new WriteWeightToFile();
-            NN = writer.readCNN(Utils.WEIGHTS_DIRECTORY);
+        }
+        else {
+            WriteObject WO=new WriteObject();
+            NN = WO.load();
 
 
         }
@@ -38,18 +39,15 @@ public class Run {
 
         //TEST
         testImage(ImageIO.read(new File("black.png")));
-        testImage(ImageIO.read(new File("black2.png")));
-        testImage(ImageIO.read(new File("black3.png")));
-        testImage(ImageIO.read(new File("black4.png")));
-        testImage(ImageIO.read(new File("black.png")));
+        testImage(ImageIO.read(new File("aa.jpg")));
 
-       // testImage(ImageIO.read(new File("white.bmp")));
+        WO.save(NN);
 
 
         try {
+            WriteObject WO=new WriteObject();
+            WO.save(NN);
 
-            WriteWeightToFile writer = new WriteWeightToFile();
-            writer.writeCNN(NN);
         } catch (Exception e) {
 
             System.out.print(e.toString());

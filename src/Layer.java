@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
@@ -5,8 +6,10 @@ import static java.lang.Math.abs;
 /**
  * Created by orrko_000 on 13/05/2017.
  */
-public class Layer {
-        ArrayList<Neuron> neurons=new ArrayList<Neuron>();
+public class Layer  implements Serializable {
+    private static final long serialVersionUID = 3L;
+
+    ArrayList<Neuron> neurons=new ArrayList<Neuron>();
         float[] layerINPUTs;
         float[] actualOUTPUTs;int actualOUTPUTsSize=0;
         float[] expectedOUTPUTs;
