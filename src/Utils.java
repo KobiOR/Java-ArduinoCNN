@@ -14,7 +14,7 @@ public final class Utils {
 
     static final String WEIGHTS_DIRECTORY = "weights.text";
     static boolean LEARNING_STATE=true;
-    static int CYCLE_LIMIT=2000;
+    static int CYCLE_LIMIT=1000;
     static float LEARNING_RATE=0.00001f;
     static final File GREEN_DIR = new File("Dataset\\1");
     static final File RED_DIR= new File("Dataset\\2");
