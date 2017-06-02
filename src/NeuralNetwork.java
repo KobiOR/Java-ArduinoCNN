@@ -167,7 +167,7 @@ public class NeuralNetwork {
         /* Function to train the network until the Error is below a specific threshold */
         void autoTrainNetwork(ArrayList trainingInputData, ArrayList trainingExpectedData, float trainingErrorTarget, int cycleLimit){
             trainingError=9999;
-            int trainingCounter=0;
+            int trainingCounter=1;
 
 
     /* cycle through the training data until the trainingError gets below trainingErrorTarget (eg. 0.0005) or the training cycles have exceeded the cycleLimit
@@ -194,7 +194,7 @@ variable (eg. 10000). */
        If the training error is still below the trainingErrorTarget, then we will end the training session.
        If the training error is above the trainingErrorTarget, we will continue to train. It will do this check a  Maximum of 9 times. */
             if(trainingCounter<cycleLimit){
-                System.out.println("Cycle number : "+trainingCounter);
+                System.out.println("Cycle number : "+trainingCounter );
                 System.out.println("Train error : "+trainingError);
                 trainingCycle(trainingInputData, trainingExpectedData, false);
                 trainingCounter++;
