@@ -28,8 +28,7 @@ public class DataSetCreator {
         };
 
 
-    public static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList,boolean light)
-    {
+    public static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList,boolean light)    {
 
             ArrayList<Float> tempList=new ArrayList<Float>();
             final int width = image.getWidth();

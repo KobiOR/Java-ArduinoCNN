@@ -34,7 +34,6 @@ public class Run {
 
         //TEST
         testImage(ImageIO.read(new File("black.png")),1.0f,NN,true);
-        testImage(ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\white.png")),0.0f,NN,false);
 
 
         try {
@@ -55,7 +54,7 @@ public class Run {
         dataCreator.convertImageToArray(img, testList, testListClassification, light);
         NN.processInputsToOutputs((float[]) testList.get(0));
         System.out.println(" OUTPUT=" +  NN.getOutputs()[0]);
-        System.out.println(" OUTPUT=" +  NN.getOutputs()[1]);
+        //System.out.println(" OUTPUT=" +  NN.getOutputs()[1]);
 
         return 0;
     }
