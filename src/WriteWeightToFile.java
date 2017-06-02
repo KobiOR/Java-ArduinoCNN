@@ -4,9 +4,10 @@ import java.util.ArrayList;
 /**
  * Created by orrko_000 on 26/05/2017.
  */
-public class WriteWeightToFile {
 
-    public void writeCNN(NeuralNetwork CNN) throws IOException {
+class WriteWeightToFile {
+
+     void writeCNN(NeuralNetwork CNN) throws IOException {
         ArrayList<Layer> layers = CNN.layers;
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Utils.WEIGHTS_DIRECTORY))) {
             bw.write(String.valueOf(layers.size()));//WRITE NUMBER Of LAYERS
@@ -17,8 +18,6 @@ public class WriteWeightToFile {
                 bw.write(String.valueOf(layers.get(i).neurons.size()));//WRITE NUMBER Of NEURONS
                 bw.newLine();
                 bw.write(String.valueOf(layers.get(i).neurons.get(0).neuronInputValue));//WRITE NUMBER Of NEURONS
-
-
 
             }
 
@@ -32,7 +31,7 @@ public class WriteWeightToFile {
 
 
     }
-    public NeuralNetwork readCNN(String file) {
+     NeuralNetwork readCNN(String file) {
         NeuralNetwork NN = new NeuralNetwork();
         NN.layers = new ArrayList<Layer>();
         BufferedReader br = null;
