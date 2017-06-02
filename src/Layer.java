@@ -13,6 +13,7 @@ public class Layer {
         float layerError;
         float learningRate;
         int numberConnections;
+
         Layer(int numberConnections, int numberNeurons){
           this.numberConnections=numberConnections;
     /* Add all the neurons and actualOUTPUTs to the layer */

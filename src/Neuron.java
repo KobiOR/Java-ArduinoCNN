@@ -15,7 +15,6 @@ public class Neuron {
         float deltaError;
         final Random rand = new Random();
 
-        /*The typical constructor of a Neuron - with random Bias and Connection weights */
         Neuron(int numOfConnections){
             randomiseBias();
             for(int i=0; i<numOfConnections; i++){
@@ -23,24 +22,19 @@ public class Neuron {
                 addConnection(conn);
             }
         }
-        //Function to add a Connection to this neuron
         void addConnection(Connection conn){
             connections.add(conn);
         }
-        /* Function to return the number of connections associated with this neuron.*/
         int getConnectionCount(){
             return connections.size();
         }
-        //Function to set the bias of this Neron
         void setBias(float tempBias){
             bias = tempBias;
         }
-        //Function to randomise the bias of this Neuron
         void randomiseBias(){
             //TODO check this !!
             setBias(rand.nextFloat()%1);
         }
-  /*Function to convert the inputValue to an outputValue  Make sure that the number of connEntryValues matches the number of connections */
         float getNeuronOutput(float[] connEntryValues){
             if(connEntryValues.length!=getConnectionCount()){
                 System.out.println("Neuron Error: getNeuronOutput() : Wrong number of connEntryValues");
@@ -63,12 +57,10 @@ public class Neuron {
             //Return the outputValue
             return neuronOutputValue;
         }
-        //Activation function
         float Activation(float x){
             float activatedValue = (float) (1 / (1 + exp(-1 * x)));
             return activatedValue;
         }
-
         public String toFile(){
         String str;
             str=String.valueOf(bias)+"."+String.valueOf(neuronInputValue)+"."+String.valueOf(neuronOutputValue) +"."+String.valueOf(deltaError);
