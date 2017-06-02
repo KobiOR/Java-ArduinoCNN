@@ -46,7 +46,6 @@ public class Run {
         }
     }
     public static float testImage(BufferedImage image,float classification,NeuralNetwork NN,boolean light){
-
         ArrayList testList = new ArrayList();
         ArrayList testListClassification = new ArrayList();
         testListClassification.add(classification);
@@ -55,8 +54,6 @@ public class Run {
         NN.processInputsToOutputs((float[]) testList.get(0));
         System.out.println(" OUTPUT=" +  NN.getOutputs()[0]);
         System.out.println(" OUTPUT=" +  NN.getOutputs()[1]);
-
-        //System.out.println(" OUTPUT=" +  NN.getOutputs()[1]);
 
         return 0;
     }
