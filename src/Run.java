@@ -1,4 +1,4 @@
-
+//
 import javax.imageio.ImageIO;
 import javax.rmi.CORBA.Util;
 import java.awt.image.BufferedImage;
