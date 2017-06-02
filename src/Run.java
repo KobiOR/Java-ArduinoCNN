@@ -1,6 +1,5 @@
-//
+//Hello world
 import javax.imageio.ImageIO;
-import javax.rmi.CORBA.Util;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
