@@ -55,8 +55,7 @@ public class Run {
         BufferedImage img = dataCreator.getScaledImage(image);
         dataCreator.convertImageToArray(img, testList, testListClassification, true);
         NN.processInputsToOutputs((float[]) testList.get(0));
-        float[] myOutputDataA2 = NN.getOutputs();
-        System.out.println(" OUTPUT=" + myOutputDataA2[0]);
+        System.out.println(" OUTPUT=" +  NN.getOutputs());
         return 0;
     }
 }
