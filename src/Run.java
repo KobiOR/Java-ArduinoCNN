@@ -19,7 +19,7 @@ public class Run {
             NN = new NeuralNetwork();
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 2);
-            NN.addLayer(Utils.CNN_DIMENSION * 2, 2);
+            NN.addLayer(Utils.CNN_DIMENSION *2, 2);
             System.out.println("Finish create the Neural Network");
 
         } else {
@@ -33,8 +33,8 @@ public class Run {
         System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
 
         //TEST
-        testImage(ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\black.png")),1.0f,NN,true);
-        testImage(ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\white.png")),1.0f,NN,false);
+        testImage(ImageIO.read(new File("black.png")),1.0f,NN,true);
+        testImage(ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\white.png")),0.0f,NN,false);
 
 
         try {
@@ -52,9 +52,11 @@ public class Run {
         ArrayList testListClassification = new ArrayList();
         testListClassification.add(classification);
         BufferedImage img = dataCreator.getScaledImage(image);
-        dataCreator.convertImageToArray(img, testList, testListClassification, true);
+        dataCreator.convertImageToArray(img, testList, testListClassification, light);
         NN.processInputsToOutputs((float[]) testList.get(0));
-        System.out.println(" OUTPUT=" +  NN.getOutputs());
+        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]);
+        System.out.println(" OUTPUT=" +  NN.getOutputs()[1]);
+
         return 0;
     }
 }
