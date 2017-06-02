@@ -45,13 +45,13 @@ public class Run {
         float[] myOutputDataA2 = NN.getOutputs();
         System.out.println(" INPUT = black; OUTPUT=" + myOutputDataA2[0]);
 
-        testListClassification.add((float) 0.0f);
+        testListClassification.add((float) -1.0f);
          image = ImageIO.read(new File("C:\\Users\\orrko_000\\Desktop\\white.png"));
          img = dataCreator.getScaledImage(image);
         dataCreator.convertImageToArray(img, testList, testListClassification, true);
         NN.processInputsToOutputs((float[]) testList.get(1));
          myOutputDataA2 = NN.getOutputs();
-        System.out.println(" INPUT = black; OUTPUT=" + myOutputDataA2[0]);
+        System.out.println(" INPUT = white; OUTPUT=" + myOutputDataA2[0]);
 
 
 
