@@ -9,7 +9,8 @@ class WriteWeightToFile {
 
      void writeCNN(NeuralNetwork CNN) throws IOException {
         ArrayList<Layer> layers = CNN.layers;
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Utils.WEIGHTS_DIRECTORY))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Utils.WEIGHTS_DIRECTORY))) 
+        {
             bw.write(String.valueOf(layers.size()));//WRITE NUMBER Of LAYERS
             bw.newLine();
             for (int i = 0; i <layers.size() ; i++) {
@@ -17,7 +18,7 @@ class WriteWeightToFile {
                 bw.newLine();
                 bw.write(String.valueOf(layers.get(i).neurons.size()));//WRITE NUMBER Of NEURONS
                 bw.newLine();
-                bw.write(String.valueOf(layers.get(i).neurons.get(0).neuronInputValue));//WRITE NUMBER Of NEURONS
+
 
             }
 

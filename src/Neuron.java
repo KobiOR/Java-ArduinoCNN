@@ -69,6 +69,14 @@ public class Neuron {
             return activatedValue;
         }
 
+        public String toFile(){
+        String str;
+            str=String.valueOf(bias)+"."+String.valueOf(neuronInputValue)+"."+String.valueOf(neuronOutputValue) +"."+String.valueOf(deltaError);
+            return str;
+
+
+        }
+
     }
 
 
