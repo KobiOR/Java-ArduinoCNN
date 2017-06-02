@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class Run {
 
     static DataSetCreator dataCreator = new DataSetCreator();
+    static NeuralNetwork NN;
 
     public static void main(String[] args) throws IOException {
         ArrayList myTrainingInputs = new ArrayList();
         ArrayList myTrainingOutputs = new ArrayList();
-        NeuralNetwork NN;
 
         if (Utils.LEARNING_STATE) {
             dataCreator.start(myTrainingInputs, myTrainingOutputs);
@@ -33,8 +33,12 @@ public class Run {
         System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
 
         //TEST
-        testImage(ImageIO.read(new File("black.png")),1.0f,NN,true);
-        testImage(ImageIO.read(new File("black.png")),1.0f,NN,false);
+        testImage(ImageIO.read(new File("black.png")));
+        testImage(ImageIO.read(new File("black2.png")));
+        testImage(ImageIO.read(new File("black3.png")));
+        testImage(ImageIO.read(new File("black4.png")));
+
+       // testImage(ImageIO.read(new File("white.bmp")));
 
 
         try {
@@ -46,17 +50,14 @@ public class Run {
             System.out.print(e.toString());
         }
     }
-    public static float testImage(BufferedImage image,float classification,NeuralNetwork NN,boolean light){
+    public static float testImage(BufferedImage image){
         ArrayList testList = new ArrayList();
         ArrayList testListClassification = new ArrayList();
-        testListClassification.add(classification);
         BufferedImage img = dataCreator.getScaledImage(image);
-        dataCreator.convertImageToArray(img, testList, testListClassification, light);
-        NN.processInputsToOutputs((float[]) testList.get(0));
-        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]);
-        System.out.println(" OUTPUT=" +  NN.getOutputs()[1]);
 
-        return 0;
+        NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
+        System.out.println(" OUTPUT=" +  NN.getOutputs()[0] +":"+  NN.getOutputs()[1]);
+        return NN.getOutputs()[0];
     }
 }
 
