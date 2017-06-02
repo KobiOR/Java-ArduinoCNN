@@ -59,7 +59,7 @@ public class Run {
 
         BufferedImage img = dataCreator.getScaledImage(image);
         NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
-        System.out.println(" OUTPUT=" +  NN.getOutputs()[0] +":"+  NN.getOutputs()[1]);
+        System.out.println(" OUTPUT=" +  NN.getOutputs()[0] );
 
         return NN.getOutputs()[0];
     }
