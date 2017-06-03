@@ -54,6 +54,7 @@ public class Run {
             System.out.print(e.toString());
         }
     }
+
     public static float testImage(BufferedImage image){
 
         BufferedImage img = dataCreator.getScaledImage(image);
