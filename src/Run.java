@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public class Run  {
 
     static DataSetCreator dataCreator = new DataSetCreator();
-    static NeuralNetwork NN;
+    static NeuralNetwork NN=new NeuralNetwork();
     static WriteObject WO=new WriteObject();
-    static Server server=new Server();
+  //  static Server server=new Server();
 
     public static void main(String[] args) throws Exception {
         ArrayList myTrainingInputs = new ArrayList();
@@ -18,27 +18,26 @@ public class Run  {
 
         if (Utils.LEARNING_STATE) {
             dataCreator.start(myTrainingInputs, myTrainingOutputs);
-            NN = new NeuralNetwork();
+
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 3);
             NN.addLayer(Utils.CNN_DIMENSION*3, Utils.CNN_DIMENSION );
             NN.addLayer(Utils.CNN_DIMENSION, 100 );
             NN.addLayer(100 , 2);
-
             System.out.println("Finish create the Neural Network");
 
         }
-        else {
+        else if (!Utils.LEARNING_STATE) {
             WriteObject WO=new WriteObject();
             NN = WO.load();
-
-
         }
+
+
         System.out.println("Begin Training");
         NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, Utils.LEARNING_RATE, Utils.CYCLE_LIMIT);
         System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
 
-        //TEST
+        System.out.println("****Testing The Network****");
         testImage(ImageIO.read(new File("black.png")));
         testImage(ImageIO.read(new File("aa.jpg")));
 
