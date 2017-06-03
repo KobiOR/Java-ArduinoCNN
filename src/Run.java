@@ -10,6 +10,7 @@ public class Run {
     static DataSetCreator dataCreator = new DataSetCreator();
     static NeuralNetwork NN;
     static WriteObject WO=new WriteObject();
+    static Server server=new Server();
 
     public static void main(String[] args) throws Exception {
         ArrayList myTrainingInputs = new ArrayList();
