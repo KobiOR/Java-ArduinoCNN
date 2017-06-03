@@ -5,17 +5,17 @@ import java.io.File;
  */
 public final class Utils {
     static int imagesRead=0;
-    static final  int WIDTH=30;
-    static final  int HEIGHT=30;
+    static final  int WIDTH=10;
+    static final  int HEIGHT=10;
     static final private int  DIMENSION=3;
     static final int CNN_DIMENSION=WIDTH*HEIGHT*DIMENSION;
     static final float []GREEN_CLASSIFICATION={1.0f};
     static final float[] RED_CLASSIFICATION={0.1f};
 
-    static boolean LEARNING_STATE=false;
-    static int CYCLE_LIMIT=100;
-    static float LEARNING_RATE=0.00001f;
-
+    static boolean LEARNING_STATE=true;
+    static boolean RANDOMISE_BIAS=false;
+    static int CYCLE_LIMIT=30;
+    static float LEARNING_RATE=0.001f;
 
     static final File GREEN_DIR = new File("Dataset\\1");
     static final File RED_DIR= new File("Dataset\\2");

@@ -35,7 +35,10 @@ public class Neuron  implements Serializable {
         }
         void randomiseBias(){
             //TODO check this !!
+            if (Utils.RANDOMISE_BIAS)
             setBias(rand.nextFloat()%1);
+            else
+                setBias(1);
         }
         float getNeuronOutput(float[] connEntryValues){
             if(connEntryValues.length!=getConnectionCount()){

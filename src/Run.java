@@ -24,28 +24,27 @@ public class Run  {
             System.out.print("Creating Layers...");
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 3);
-            NN.addLayer(Utils.CNN_DIMENSION*3, Utils.CNN_DIMENSION );
-            NN.addLayer(Utils.CNN_DIMENSION, 100 );
-            NN.addLayer(100 , 2);
+            NN.addLayer(Utils.CNN_DIMENSION * 3 , 2);
             System.out.println("Done!");
 
+            System.out.print("Training The Network...");
+            NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, Utils.LEARNING_RATE, Utils.CYCLE_LIMIT);
+            System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
+
+            System.out.print("Saved The CNN Model....");
+            WO.save(NN);
+            System.out.println("Done!");
         }
-        else if (!Utils.LEARNING_STATE) {
+        else {
             WriteObject WO=new WriteObject();
             NN = WO.load();
         }
-
-        System.out.print("Training The Network...");
-        NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, Utils.LEARNING_RATE, Utils.CYCLE_LIMIT);
-        System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
 
         System.out.print("Testing The Network...");
         testImage(ImageIO.read(new File("RED.jpg")));
         System.out.println("Done!");
 
-        System.out.print("Saved The CNN Model....");
-        WO.save(NN);
-        System.out.println("Done!");
+
 
 
 
@@ -55,7 +54,7 @@ public class Run  {
 
         BufferedImage img = dataCreator.getScaledImage(image);
         NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
-        System.out.println(" OUTPUT=" +  NN.getOutputs()[0] );
+        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
 
         return NN.getOutputs()[0];
     }
