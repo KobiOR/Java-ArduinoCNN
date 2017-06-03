@@ -4,7 +4,7 @@ import java.io.File;
  * Created by orrko_000 on 27/05/2017.
  */
 public final class Utils {
-    static int imagesRead=0;
+    static int imagesRead=0+0;
     static final  int WIDTH=3;
     static final  int HEIGHT=3;
     static final private int  DIMENSION=3;
