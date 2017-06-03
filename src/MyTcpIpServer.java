@@ -30,9 +30,9 @@ import java.util.concurrent.*;
                 @Override
                 public void run() {
                     // TODO Auto-generated method stub
-                    while (true) {
+                    while (true){
                         try {
-
+                            System.out.print(".");
                             Socket socket = server.accept();
                             PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
                             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));

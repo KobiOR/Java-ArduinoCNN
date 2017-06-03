@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Run {
+public class Run  {
 
     static DataSetCreator dataCreator = new DataSetCreator();
     static NeuralNetwork NN;

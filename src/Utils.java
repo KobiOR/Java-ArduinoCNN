@@ -12,8 +12,8 @@ public final class Utils {
     static final float []GREEN_CLASSIFICATION={1.0f};
     static final float[] RED_CLASSIFICATION={0.1f};
 
-    static boolean LEARNING_STATE=false;
-    static int CYCLE_LIMIT=10000;
+    static boolean LEARNING_STATE=true;
+    static int CYCLE_LIMIT=1;
     static float LEARNING_RATE=0.00001f;
 
 
