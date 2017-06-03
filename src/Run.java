@@ -17,14 +17,17 @@ public class Run  {
         ArrayList myTrainingOutputs = new ArrayList();
 
         if (Utils.LEARNING_STATE) {
+            System.out.print("Processing Data...");
             dataCreator.start(myTrainingInputs, myTrainingOutputs);
+            System.out.println("Done!");
 
+            System.out.print("Creating Layers...");
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 3);
             NN.addLayer(Utils.CNN_DIMENSION*3, Utils.CNN_DIMENSION );
             NN.addLayer(Utils.CNN_DIMENSION, 100 );
             NN.addLayer(100 , 2);
-            System.out.println("Finish create the Neural Network");
+            System.out.println("Done!");
 
         }
         else if (!Utils.LEARNING_STATE) {
@@ -32,26 +35,20 @@ public class Run  {
             NN = WO.load();
         }
 
-
-        System.out.println("Begin Training");
+        System.out.print("Training The Network...");
         NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, Utils.LEARNING_RATE, Utils.CYCLE_LIMIT);
         System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
 
-        System.out.println("****Testing The Network****");
-        testImage(ImageIO.read(new File("black.png")));
-        testImage(ImageIO.read(new File("aa.jpg")));
+        System.out.print("Testing The Network...");
+        testImage(ImageIO.read(new File("RED.jpg")));
+        System.out.println("Done!");
 
+        System.out.print("Saved The CNN Model....");
         WO.save(NN);
+        System.out.println("Done!");
 
 
-        try {
-            WriteObject WO=new WriteObject();
-            WO.save(NN);
 
-        } catch (Exception e) {
-
-            System.out.print(e.toString());
-        }
     }
 
     public static float testImage(BufferedImage image){
