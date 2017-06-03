@@ -16,6 +16,7 @@ public final class Utils {
     static int CYCLE_LIMIT=10000;
     static float LEARNING_RATE=0.00001f;
 
+
     static final File GREEN_DIR = new File("Dataset\\1");
     static final File RED_DIR= new File("Dataset\\2");
     static final String[] EXTENSIONS = new String[]{"gif", "png", "bmp","jpeg","jpg" };
