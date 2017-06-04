@@ -22,9 +22,13 @@ public class Run  {
             System.out.println("Done!");
 
             System.out.print("Creating Layers...");
+            long startTime = System.currentTimeMillis();
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 3);
             NN.addLayer(Utils.CNN_DIMENSION * 3 , 2);
+            long estimatedTime = System.currentTimeMillis() - startTime;
+            System.out.println("Took: "+estimatedTime/60*60+" Minutes and: "+ estimatedTime/60*60);
+
             System.out.println("Done!");
 
             System.out.print("Training The Network...");
@@ -44,10 +48,6 @@ public class Run  {
         testImage(ImageIO.read(new File("RED.jpg")));
         System.out.println("Done!");
 
-
-
-
-
     }
 
     public static float testImage(BufferedImage image){
@@ -55,7 +55,6 @@ public class Run  {
         BufferedImage img = dataCreator.getScaledImage(image);
         NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
         System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
-
         return NN.getOutputs()[0];
     }
 }

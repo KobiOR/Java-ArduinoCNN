@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -14,6 +15,7 @@ import javax.imageio.ImageIO;
 
 
 public class DataSetCreator {
+    static PrintWriter writer=null;
         static final FilenameFilter IMAGE_FILTER = new FilenameFilter()
         {
             @Override
@@ -39,22 +41,33 @@ public class DataSetCreator {
                     float red = (pixel >> 16) & 0xff;//RED
                     float green = (pixel >> 8) & 0xff;//GREEN
                     float blue = (pixel) & 0xff;//BLUE
-                    tempList.add(red);
-                    tempList.add(green);
-                    tempList.add(blue);
+                   if(!Utils.WRITE_TO_FILE_STATE) {
+                       tempList.add(red);
+                       tempList.add(green);
+                       tempList.add(blue);
+                   }
                 }
             }
                 float[] arr=new float[tempList.size()];
-                for (int j = 0; j <tempList.size() ; j++) {
+                for (int j = 0; j <tempList.size() ; j++)
                     arr[j]=tempList.get(j);
-                }
+
                 inputList.add(arr);
+
                 if (light)
-                outputList.add(Utils.GREEN_CLASSIFICATION);
-                else
-                outputList.add(Utils.RED_CLASSIFICATION);
-                tempList.clear();
-            }
+                {
+                     outputList.add(Utils.GREEN_CLASSIFICATION);
+                    if (Utils.WRITE_TO_FILE_STATE)
+                        writeImagesToFIle(arr,1);
+                }
+                else {
+                    outputList.add(Utils.RED_CLASSIFICATION);
+                    if (Utils.WRITE_TO_FILE_STATE)
+                        writeImagesToFIle(arr,0);
+                }
+        tempList.clear();
+
+    }
     public int getImageCounter() {
             return Utils.imagesRead;
         }
@@ -95,7 +108,9 @@ public class DataSetCreator {
                 }
             }
         randomiseData( myTrainingInputs,  myTrainingOutputs);
-        }
+      writer.close();
+
+    }
     public BufferedImage getScaledImage(Image srcImg){
         BufferedImage resizedImg = new BufferedImage(Utils.WIDTH,Utils.HEIGHT , Transparency.TRANSLUCENT);
         Graphics2D g2 = resizedImg.createGraphics();
@@ -134,6 +149,24 @@ public class DataSetCreator {
 
 
     }
+    public static void writeImagesToFIle(float[] arr,float classification){
+        try{
+            if(writer==null)
+            {        writer = new PrintWriter("images.bin", "UTF-8");
+                     writer.println(classification);
+                     writer.println(arr);
+            }
+            else{
+                writer.println(classification);
+                writer.println(arr);
+            }
+    //        writer.close();
+        } catch (IOException e) {
+            // do something
+        }
 
+
+
+    }
     }
 
