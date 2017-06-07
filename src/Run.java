@@ -1,4 +1,7 @@
 //Hello world
+
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.image.BufferedImage;
@@ -9,53 +12,69 @@ public class Run  {
 
     static DataSetCreator dataCreator = new DataSetCreator();
     static NeuralNetwork NN=new NeuralNetwork();
-    static WriteObject WO=new WriteObject();
+    static WriteAndLoadNetwork WO=new WriteAndLoadNetwork();
   //  static Server server=new Server();
 
     public static void main(String[] args) throws Exception {
         ArrayList myTrainingInputs = new ArrayList();
         ArrayList myTrainingOutputs = new ArrayList();
 
+
         if (Utils.LEARNING_STATE) {
             System.out.print("Processing Data...");
+           // dataCreator.readImagesFromFile();
             dataCreator.start(myTrainingInputs, myTrainingOutputs);
             System.out.println("Done!");
 
             System.out.print("Creating Layers...");
-            long startTime = System.currentTimeMillis();
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 3);
-            NN.addLayer(Utils.CNN_DIMENSION * 3 , 2);
-            long estimatedTime = System.currentTimeMillis() - startTime;
-            System.out.println("Took: "+estimatedTime/60*60+" Minutes and: "+ estimatedTime/60*60);
+            NN.addLayer(Utils.CNN_DIMENSION*3  , 2);
 
-            System.out.println("Done!");
 
             System.out.print("Training The Network...");
-            NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, Utils.LEARNING_RATE, Utils.CYCLE_LIMIT);
+            NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.0001f, Utils.CYCLE_LIMIT);
             System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
-
+            System.out.println("Minimum:"+Utils.BEST_TRAIN_ERROR+" At Cycle Number: "+Utils.BEST_TRAIN_ERROR_CYCLE);
             System.out.print("Saved The CNN Model....");
             WO.save(NN);
             System.out.println("Done!");
         }
         else {
-            WriteObject WO=new WriteObject();
+            WriteAndLoadNetwork WO=new WriteAndLoadNetwork();
             NN = WO.load();
         }
+//
+//        System.out.print("Testing The Network...");
+//        testImage(ImageIO.read(new File("RED.jpg")));
+//        System.out.println("Done!");
 
-        System.out.print("Testing The Network...");
-        testImage(ImageIO.read(new File("RED.jpg")));
-        System.out.println("Done!");
-
-    }
-
-    public static float testImage(BufferedImage image){
-
-        BufferedImage img = dataCreator.getScaledImage(image);
+        BufferedImage img = dataCreator.getScaledImage( ImageIO.read(new File("GREEN.JPG")));
         NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
         System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
-        return NN.getOutputs()[0];
+
+         img = dataCreator.getScaledImage( ImageIO.read(new File("RED.JPG")));
+        NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
+        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
+    }
+
+    public static void testImage(BufferedImage image){
+
+        BufferedImage img = null;
+        try {
+            img = dataCreator.getScaledImage( ImageIO.read(new File("GREEN.JPG")));
+            NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
+            System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
+
+            img = dataCreator.getScaledImage( ImageIO.read(new File("RED.JPG")));
+            NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
+            System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 }
 

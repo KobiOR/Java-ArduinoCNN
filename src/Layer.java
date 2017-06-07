@@ -12,7 +12,7 @@ public class Layer  implements Serializable {
     ArrayList<Neuron> neurons=new ArrayList<Neuron>();
         float[] layerINPUTs;
         float[] actualOUTPUTs;int actualOUTPUTsSize=0;
-        float[] expectedOUTPUTs;
+        float expectedOUTPUTs;
         float layerError;
         float learningRate;
         int numberConnections;
@@ -42,11 +42,11 @@ public class Layer  implements Serializable {
             this.actualOUTPUTs=temp;
 
         }
-        void setExpectedOUTPUTs(float[] tempExpectedOUTPUTs){
+        void setExpectedOUTPUTs(float tempExpectedOUTPUTs){
             expectedOUTPUTs=tempExpectedOUTPUTs;
         }
         void clearExpectedOUTPUT(){
-            expectedOUTPUTs=new float[]{};
+            expectedOUTPUTs=0;
         }
         void setLearningRate(float tempLearningRate){
             learningRate=tempLearningRate;
@@ -90,16 +90,16 @@ public class Layer  implements Serializable {
         void increaseLayerErrorBy(float tempLayerError){
             layerError+=tempLayerError;
         }
-        void setDeltaError(float[] expectedOutputData){
+        void setDeltaError(float expectedOutputData){
             setExpectedOUTPUTs(expectedOutputData);
             int neuronCount = getNeuronCount();
     /* Reset the layer error to 0 before cycling through each neuron */
             setLayerError(0);
             for(int i=0; i<neuronCount;i++){
-                neurons.get(i).deltaError = actualOUTPUTs[i]*(1-actualOUTPUTs[i])*(expectedOUTPUTs[0]-actualOUTPUTs[i]);
+                neurons.get(i).deltaError = actualOUTPUTs[i]*(1-actualOUTPUTs[i])*(expectedOUTPUTs-actualOUTPUTs[i]);
 
        /* Increase the layer Error by the absolute difference between the calculated value (actualOUTPUT) and the expected value (expectedOUTPUT). */
-                increaseLayerErrorBy(abs(expectedOUTPUTs[0]-actualOUTPUTs[i]));
+                increaseLayerErrorBy(abs(expectedOUTPUTs-actualOUTPUTs[i]));
             }
         }
         void trainLayer(float tempLearningRate){

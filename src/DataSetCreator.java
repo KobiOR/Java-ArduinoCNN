@@ -4,10 +4,7 @@
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -16,6 +13,9 @@ import javax.imageio.ImageIO;
 
 public class DataSetCreator {
     static PrintWriter writer=null;
+    static BufferedReader reader =null;
+    static int imageCouner=0;
+
         static final FilenameFilter IMAGE_FILTER = new FilenameFilter()
         {
             @Override
@@ -37,7 +37,7 @@ public class DataSetCreator {
 
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
-                    int pixel = image.getRGB(j, i);
+                    int pixel = image.getRGB(i, j);
                     float red = (pixel >> 16) & 0xff;//RED
                     float green = (pixel >> 8) & 0xff;//GREEN
                     float blue = (pixel) & 0xff;//BLUE
@@ -48,6 +48,7 @@ public class DataSetCreator {
                    }
                 }
             }
+
                 float[] arr=new float[tempList.size()];
                 for (int j = 0; j <tempList.size() ; j++)
                     arr[j]=tempList.get(j);
@@ -74,14 +75,15 @@ public class DataSetCreator {
     public void start(ArrayList myTrainingInputs, ArrayList myTrainingOutputs){
 
                 if (Utils.RED_DIR.isDirectory()) {
-                    for (final File f : Utils.RED_DIR.listFiles(IMAGE_FILTER)) {
+                    for (final File f : Utils.RED_DIR.listFiles(IMAGE_FILTER))
+                    {
                         BufferedImage img = null;
 
                         try {
                             img = ImageIO.read(f);
                             img = this.getScaledImage(img);
                             convertImageToArray(img,myTrainingInputs,myTrainingOutputs,false);
-                            System.out.println("Read Image: " + f.getName());
+                            System.out.println("Read Image Number "+ Utils.imagesRead +": "+ f.getName());
                             Utils.imagesRead++;
 
                         } catch (final IOException e) {
@@ -98,7 +100,7 @@ public class DataSetCreator {
                         img = this.getScaledImage(img);
 
                         convertImageToArray(img,myTrainingInputs,myTrainingOutputs,true);
-                        System.out.println("Read Image: " + f.getName());
+                        System.out.println("Read Image Number "+ Utils.imagesRead +": "+ f.getName());
                         Utils.imagesRead++;
 
                     }
@@ -108,11 +110,10 @@ public class DataSetCreator {
                 }
             }
         randomiseData( myTrainingInputs,  myTrainingOutputs);
-      writer.close();
 
     }
     public BufferedImage getScaledImage(Image srcImg){
-        BufferedImage resizedImg = new BufferedImage(Utils.WIDTH,Utils.HEIGHT , Transparency.TRANSLUCENT);
+        BufferedImage resizedImg = new BufferedImage(Utils.WIDTH, Utils.HEIGHT , Transparency.TRANSLUCENT);
         Graphics2D g2 = resizedImg.createGraphics();
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         g2.drawImage(srcImg, 0, 0, Utils.WIDTH, Utils.HEIGHT, null);
@@ -126,7 +127,7 @@ public class DataSetCreator {
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                int pixel = image.getRGB(j, i);
+                int pixel = image.getRGB(i, j);
                 float red = (pixel >> 16) & 0xff;//RED
                 float green = (pixel >> 8) & 0xff;//GREEN
                 float blue = (pixel) & 0xff;//BLUE
@@ -152,7 +153,7 @@ public class DataSetCreator {
     public static void writeImagesToFIle(float[] arr,float classification){
         try{
             if(writer==null)
-            {        writer = new PrintWriter("images.bin", "UTF-8");
+            {        writer = new PrintWriter(Utils.IMAGES_FILE_NAME, "UTF-8");
                      writer.println(classification);
                      writer.println(arr);
             }
@@ -168,5 +169,13 @@ public class DataSetCreator {
 
 
     }
+    public void trainNetworkWithImage(NeuralNetwork NN, BufferedImage image, float classification){
+
+        float [] arr=convertImageToArray(image);
+        NN.trainNetwork(arr,classification);
+
+
+
     }
+}
 
