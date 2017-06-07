@@ -1,6 +1,8 @@
-/**
+package Utils; /**
  * Created by orrko_000 on 26/05/2017.
  */
+
+import NeuralNetwork.NeuralNetwork;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

@@ -1,7 +1,10 @@
+package NeuralNetwork;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static Utils.Utils.*;
 import static java.lang.Math.exp;
 
 /**
@@ -35,14 +38,14 @@ public class Neuron  implements Serializable {
         }
         void randomiseBias(){
             //TODO check this !!
-            if (Utils.RANDOMISE_BIAS)
+            if (RANDOMISE_BIAS)
             setBias(rand.nextFloat()%1);
             else
                 setBias(1);
         }
         float getNeuronOutput(float[] connEntryValues){
             if(connEntryValues.length!=getConnectionCount()){
-                System.out.println("Neuron Error: getNeuronOutput() : Wrong number of connEntryValues");
+                System.out.println("NeuralNetwork.Neuron Error: getNeuronOutput() : Wrong number of connEntryValues");
                 System.exit(0);
             }
 
@@ -53,10 +56,10 @@ public class Neuron  implements Serializable {
                 neuronInputValue+=connections.get(i).calcConnExit(connEntryValues[i]);
             }
 
-            //Add the bias to the Neuron's inputValue
+            //Add the bias to the NeuralNetwork.Neuron's inputValue
             neuronInputValue+=bias;
 
-    /* Send the inputValue through the activation function to produce the Neuron's outputValue */
+    /* Send the inputValue through the activation function to produce the NeuralNetwork.Neuron's outputValue */
             neuronOutputValue=Activation(neuronInputValue);
 
             //Return the outputValue

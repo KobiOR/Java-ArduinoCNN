@@ -1,9 +1,10 @@
-/**
+package Utils; /**
  * Created by orrko_000 on 02/06/2017.
  */
+ import NeuralNetwork.NeuralNetwork;
 
-import java.io.*;
-class WriteAndLoadNetwork {
+ import java.io.*;
+class WriteObject {
 
     public void save(NeuralNetwork NN) throws Exception {
 
@@ -11,8 +12,7 @@ class WriteAndLoadNetwork {
         ObjectOutputStream oos = null;
 
         try {
-            String name="CNN"+Utils.BEST_TRAIN_ERROR+".ser";
-            fout = new FileOutputStream(name);
+            fout = new FileOutputStream("CNN.ser");
             oos = new ObjectOutputStream(fout);
             oos.writeObject(NN);
             System.out.println("Neural Network Saved");
@@ -44,8 +44,9 @@ class WriteAndLoadNetwork {
 
     }
     public NeuralNetwork load(){
+        FileInputStream fin = null;
         try {
-            FileInputStream fin = new FileInputStream("CNN.ser");
+            fin = new FileInputStream("CNN.ser");
             ObjectInputStream ois = new ObjectInputStream(fin);
             NeuralNetwork N1 = (NeuralNetwork) ois.readObject();
             return N1;

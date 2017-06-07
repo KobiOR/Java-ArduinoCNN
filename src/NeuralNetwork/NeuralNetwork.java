@@ -1,7 +1,11 @@
+package NeuralNetwork;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static Utils.Utils.*;
+import static Utils.Utils.LEARNING_RATE;
 import static java.lang.Math.abs;
 
 /**
@@ -20,10 +24,10 @@ public class NeuralNetwork  implements Serializable {
         int retrainChances=0;
         final Random rand = new Random();
 
-        NeuralNetwork(){
-            learningRate= Utils.LEARNING_RATE;
+        public NeuralNetwork(){
+            learningRate= LEARNING_RATE;
         }
-        void addLayer(int numConnections, int numNeurons){
+        public void addLayer(int numConnections, int numNeurons){
             layers.add(new Layer(numConnections,numNeurons));
         }
         int getLayerCount(){
@@ -48,10 +52,10 @@ public class NeuralNetwork  implements Serializable {
         void setOutputs(float[] tempOutputs){
             arrayOfOutputs=tempOutputs;
         }
-        float[] getOutputs(){
+        public float[] getOutputs(){
             return arrayOfOutputs;
         }
-        void processInputsToOutputs(float[] tempInputs){
+        public void processInputsToOutputs(float[] tempInputs){
             setInputs(tempInputs);
 
             if(getLayerCount()>0){
@@ -78,7 +82,7 @@ public class NeuralNetwork  implements Serializable {
                 System.exit(0);
             }
         }
-        void trainNetwork(float[] inputData, float expectedOutputData){
+        public void trainNetwork(float[] inputData, float expectedOutputData){
             processInputsToOutputs(inputData);
             for(int i=getLayerCount()-1; i>-1; i--){
                 if(i==getLayerCount()-1){
@@ -116,16 +120,16 @@ public class NeuralNetwork  implements Serializable {
 
             }
         }
-        void autoTrainNetwork(ArrayList trainingInputData, ArrayList trainingExpectedData, float trainingErrorTarget, int cycleLimit){
+        public void autoTrainNetwork(ArrayList trainingInputData, ArrayList trainingExpectedData, float trainingErrorTarget, int cycleLimit){
             trainingError=9999;
             int trainingCounter=1;
             while(trainingError>trainingErrorTarget && trainingCounter<cycleLimit){
 
                 System.out.println("Cycle number : "+trainingCounter);
                 System.out.println("Train error : "+trainingError);
-                if (Utils.BEST_TRAIN_ERROR>trainingError) {
-                    Utils.BEST_TRAIN_ERROR = trainingError;
-                    Utils.BEST_TRAIN_ERROR_CYCLE=trainingCounter;
+                if (BEST_TRAIN_ERROR>trainingError) {
+                    BEST_TRAIN_ERROR = trainingError;
+                    BEST_TRAIN_ERROR_CYCLE=trainingCounter;
                 }
 
                 trainingError=0;

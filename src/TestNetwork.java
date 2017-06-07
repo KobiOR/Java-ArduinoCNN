@@ -1,3 +1,6 @@
+import NeuralNetwork.NeuralNetwork;
+import Utils.*;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;

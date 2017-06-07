@@ -1,3 +1,5 @@
+package NeuralNetwork;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -63,9 +65,9 @@ public class Layer  implements Serializable {
 
     /* Check to make sure that there are neurons in this layer to process the inputs */
             if(neuronCount>0) {
-      /* Check to make sure that the number of inputs matches the number of Neuron Connections. */
+      /* Check to make sure that the number of inputs matches the number of NeuralNetwork.Neuron Connections. */
                 if(layerINPUTs.length!=neurons.get(0).getConnectionCount()){
-                    System.out.println("Error in Layer: processInputsToOutputs: The number of inputs do NOT match the number of Neuron connections in this layer");
+                    System.out.println("Error in NeuralNetwork.Layer: processInputsToOutputs: The number of inputs do NOT match the number of NeuralNetwork.Neuron connections in this layer");
                     System.exit(0);
                 } else {
         /* The number of inputs are fine : continue
@@ -77,7 +79,7 @@ public class Layer  implements Serializable {
                     }
                 }
             }else{
-                System.out.println("Error in Layer: processInputsToOutputs: There are no Neurons in this layer");
+                System.out.println("Error in NeuralNetwork.Layer: processInputsToOutputs: There are no Neurons in this layer");
                 System.exit(0);
             }
         }

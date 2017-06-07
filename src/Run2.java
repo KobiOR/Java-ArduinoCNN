@@ -1,13 +1,13 @@
 //Hello world
 
+import Utils.Utils;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
-
-import static java.lang.Thread.sleep;
-
+import Utils.DataSetCreator;
 public class Run2 {
 
     static DataSetCreator dataCreator = new DataSetCreator();

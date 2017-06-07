@@ -1,13 +1,15 @@
 //Hello world
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import NeuralNetwork.NeuralNetwork;
+import Utils.Utils;
 
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import Utils.DataSetCreator;
+import Utils.*;
 public class Run  {
 
     static DataSetCreator dataCreator = new DataSetCreator();
