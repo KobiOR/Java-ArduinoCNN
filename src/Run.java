@@ -46,18 +46,8 @@ public class Run  {
             WriteAndLoadNetwork WO=new WriteAndLoadNetwork();
             NN = WO.load();
         }
-//
-//        System.out.print("Testing The Network...");
-//        testImage(ImageIO.read(new File("RED.jpg")));
-//        System.out.println("Done!");
 
-        BufferedImage img = dataCreator.getScaledImage( ImageIO.read(new File("GREEN.JPG")));
-        NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
-        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
 
-         img = dataCreator.getScaledImage( ImageIO.read(new File("RED.JPG")));
-        NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
-        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
     }
 
     public static void testImage(BufferedImage image){
