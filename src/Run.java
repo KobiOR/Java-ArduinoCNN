@@ -15,7 +15,7 @@ public class Run  {
     static DataSetCreator dataCreator = new DataSetCreator();
     static NeuralNetwork NN=new NeuralNetwork();
     static WriteAndLoadNetwork WO=new WriteAndLoadNetwork();
-  //  static Server server=new Server();
+  //  static Server.Server server=new Server.Server();
 
     public static void main(String[] args) throws Exception {
         ArrayList myTrainingInputs = new ArrayList();
