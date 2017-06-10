@@ -25,7 +25,8 @@ public class Connection implements Serializable {
     }
     void randomiseWeight(){
         //TODO Check this!
-        setWeight(rand.nextFloat()%2-1);
+         setWeight(rand.nextFloat()%2-1);
+
     }
     float calcConnExit(float tempInput){
         connEntry = tempInput;

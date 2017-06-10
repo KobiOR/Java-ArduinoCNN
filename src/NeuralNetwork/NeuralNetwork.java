@@ -57,13 +57,13 @@ public class NeuralNetwork  implements Serializable {
         }
         public void processInputsToOutputs(float[] tempInputs){
             setInputs(tempInputs);
-
             if(getLayerCount()>0){
                 if(arrayOfInputs.length!=layers.get(0).neurons.get(0).getConnectionCount())
                 {
                     System.out.println("NN Error: processInputsToOutputs: The number of inputs do NOT match the NN");
                     System.exit(0);
-                } else {
+                }
+                else {
                     for(int i=0; i<getLayerCount(); i++){
 
                         if(i==0){
