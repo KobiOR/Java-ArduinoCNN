@@ -59,17 +59,4 @@ public class WriteAndLoadNetwork {
 
 
     }
-    public void serializeAddressJDK7(NeuralNetwork NN) {
-
-        try (ObjectOutputStream oos =
-                     new ObjectOutputStream(new FileOutputStream("NN2.ser"))) {
-
-            oos.writeObject(NN);
-            System.out.println("Done");
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-    }
 }

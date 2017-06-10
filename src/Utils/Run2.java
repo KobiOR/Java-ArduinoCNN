@@ -1,14 +1,11 @@
 package Utils;//Hello world
 
-import Utils.Utils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
-import Utils.DataSetCreator;
-
 import static java.lang.Thread.sleep;
 
 public class Run2 {
