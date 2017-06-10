@@ -60,20 +60,14 @@ public class Layer  implements Serializable {
             }
         }
         void processInputsToOutputs(){
-    /* neuronCount is used a couple of times in this function. */
             int neuronCount = getNeuronCount();
 
-    /* Check to make sure that there are neurons in this layer to process the inputs */
             if(neuronCount>0) {
-      /* Check to make sure that the number of inputs matches the number of NeuralNetwork.Neuron Connections. */
                 if(layerINPUTs.length!=neurons.get(0).getConnectionCount()){
                     System.out.println("Error in NeuralNetwork.Layer: processInputsToOutputs: The number of inputs do NOT match the number of NeuralNetwork.Neuron connections in this layer");
                     System.exit(0);
                 } else {
-        /* The number of inputs are fine : continue
-           Calculate the actualOUTPUT of each neuron in this layer,
-           based on their layerINPUTs (which were previously calculated).
-           Add the value to the layer's actualOUTPUTs array. */
+
                     for(int i=0; i<neuronCount;i++){
                         actualOUTPUTs[i]=neurons.get(i).getNeuronOutput(layerINPUTs);
                     }
@@ -99,8 +93,6 @@ public class Layer  implements Serializable {
             setLayerError(0);
             for(int i=0; i<neuronCount;i++){
                 neurons.get(i).deltaError = actualOUTPUTs[i]*(1-actualOUTPUTs[i])*(expectedOUTPUTs-actualOUTPUTs[i]);
-
-       /* Increase the layer Error by the absolute difference between the calculated value (actualOUTPUT) and the expected value (expectedOUTPUT). */
                 increaseLayerErrorBy(abs(expectedOUTPUTs-actualOUTPUTs[i]));
             }
         }
@@ -110,8 +102,7 @@ public class Layer  implements Serializable {
             int neuronCount = getNeuronCount();
 
             for(int i=0; i<neuronCount;i++){
-      /* update the bias for neuron[i] */
-                neurons.get(i).bias += (learningRate * 1 * neurons.get(i).deltaError);
+                neurons.get(i).bias += (learningRate * neurons.get(i).deltaError);
 
       /* update the weight of each connection for this neuron[i] */
                 for(int j=0; j<neurons.get(i).getConnectionCount(); j++){

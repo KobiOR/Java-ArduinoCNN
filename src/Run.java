@@ -30,8 +30,9 @@ public class Run  {
 
             System.out.print("Creating Layers...");
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
-            NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 3);
-            NN.addLayer(Utils.CNN_DIMENSION*3  , 2);
+            NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 2);
+            NN.addLayer(Utils.CNN_DIMENSION*2, Utils.CNN_DIMENSION * 2);
+            NN.addLayer(Utils.CNN_DIMENSION*2  , 2);
 
 
             System.out.print("Training The Network...");
@@ -39,7 +40,7 @@ public class Run  {
             System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
             System.out.println("Minimum:"+Utils.BEST_TRAIN_ERROR+" At Cycle Number: "+Utils.BEST_TRAIN_ERROR_CYCLE);
             System.out.print("Saved The CNN Model....");
-            WO.save(NN);
+    //        WO.save(NN);
             System.out.println("Done!");
         }
         else {
@@ -51,7 +52,7 @@ public class Run  {
 //        testImage(ImageIO.read(new File("RED.jpg")));
 //        System.out.println("Done!");
 
-        BufferedImage img = dataCreator.getScaledImage( ImageIO.read(new File("GREEN.JPG")));
+        BufferedImage img = dataCreator.getScaledImage( ImageIO.read(new File("GREEN.jpg")));
         NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
         System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
 

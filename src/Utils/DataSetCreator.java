@@ -15,8 +15,6 @@ import javax.imageio.ImageIO;
 
 public class DataSetCreator {
     static PrintWriter writer=null;
-    static BufferedReader reader =null;
-    static int imageCouner=0;
 
         static final FilenameFilter IMAGE_FILTER = new FilenameFilter()
         {
@@ -33,42 +31,15 @@ public class DataSetCreator {
         };
     public static void convertImageToArray(BufferedImage image,ArrayList inputList,ArrayList outputList,boolean light){
 
-            ArrayList<Float> tempList=new ArrayList<Float>();
-            final int width = image.getWidth();
-            final int height = image.getHeight();
-
-            for (int i = 0; i < width; i++) {
-                for (int j = 0; j < height; j++) {
-                    int pixel = image.getRGB(i, j);
-                    float red = (pixel >> 16) & 0xff;//RED
-                    float green = (pixel >> 8) & 0xff;//GREEN
-                    float blue = (pixel) & 0xff;//BLUE
-                   if(!Utils.WRITE_TO_FILE_STATE) {
-                       tempList.add(red);
-                       tempList.add(green);
-                       tempList.add(blue);
-                   }
-                }
-            }
-
-                float[] arr=new float[tempList.size()];
-                for (int j = 0; j <tempList.size() ; j++)
-                    arr[j]=tempList.get(j);
-
+                 float[] arr=convertImageToArray(image);
                 inputList.add(arr);
 
                 if (light)
-                {
-                     outputList.add(Utils.GREEN_CLASSIFICATION);
-                    if (Utils.WRITE_TO_FILE_STATE)
-                        writeImagesToFIle(arr,1);
-                }
-                else {
+                    outputList.add(Utils.GREEN_CLASSIFICATION);
+                else
                     outputList.add(Utils.RED_CLASSIFICATION);
-                    if (Utils.WRITE_TO_FILE_STATE)
-                        writeImagesToFIle(arr,0);
-                }
-        tempList.clear();
+
+
 
     }
     public int getImageCounter() {
@@ -123,7 +94,9 @@ public class DataSetCreator {
         return resizedImg;
     }
     public static float[] convertImageToArray(BufferedImage image){
-        ArrayList<Float> tempList=new ArrayList<Float>();
+        ArrayList<Float> tA=new ArrayList<>();
+        ArrayList<Float> tB=new ArrayList<>();
+
         final int width = image.getWidth();
         final int height = image.getHeight();
 
@@ -132,15 +105,15 @@ public class DataSetCreator {
                 int pixel = image.getRGB(i, j);
                 float red = (pixel >> 16) & 0xff;//RED
                 float green = (pixel >> 8) & 0xff;//GREEN
-                float blue = (pixel) & 0xff;//BLUE
-                tempList.add(red);
-                tempList.add(green);
-                tempList.add(blue);
+                tA.add(red/1000);
+                tB.add(green/1000);
             }
         }
-        float[] arr=new float[tempList.size()];
-        for (int j = 0; j <tempList.size() ; j++) {
-            arr[j]=tempList.get(j);
+        for (float a:tB)
+             tA.add(a);
+        float[] arr=new float[tA.size()];
+        for (int j = 0; j <tA.size() ; j++) {
+            arr[j]=tA.get(j);
         }
         return arr;
     }
@@ -167,14 +140,6 @@ public class DataSetCreator {
         } catch (IOException e) {
             // do something
         }
-
-
-
-    }
-    public void trainNetworkWithImage(NeuralNetwork NN, BufferedImage image, float classification){
-
-        float [] arr=convertImageToArray(image);
-        NN.trainNetwork(arr,classification);
 
 
 

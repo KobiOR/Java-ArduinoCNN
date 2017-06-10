@@ -65,11 +65,11 @@ public class Neuron  implements Serializable {
             //Return the outputValue
             return neuronOutputValue;
         }
-        float Activation(float x){
+        float Activation(float x) {
+
             float activatedValue = (float) (1 / (1 + exp(-1 * x)));
             return activatedValue;
         }
-
     }
 
 
