@@ -125,7 +125,7 @@ public class NeuralNetwork  implements Serializable {
             int trainingCounter=1;
             while(trainingError>trainingErrorTarget && trainingCounter<cycleLimit){
 
-                System.out.println("Cycle number : "+trainingCounter);
+                System.out.println("Cycle number : "+trainingCounter );
                 System.out.println("Train error : "+trainingError);
                 if (BEST_TRAIN_ERROR>trainingError) {
                     BEST_TRAIN_ERROR = trainingError;
@@ -137,9 +137,13 @@ public class NeuralNetwork  implements Serializable {
                 trainingCounter++;
 
             }
-
-            if(trainingCounter<cycleLimit){
+            if(trainingError<trainingErrorTarget) {
                 System.out.println("Cycle number : "+trainingCounter );
+                System.out.println("Train error : "+trainingError);
+                return;
+            }
+            if(trainingCounter<cycleLimit){
+                System.out.println("----------------------\nCycle number : "+trainingCounter );
                 System.out.println("Train error : "+trainingError);
                 trainingCycle(trainingInputData, trainingExpectedData, false);
                 trainingCounter++;

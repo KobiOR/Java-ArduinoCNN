@@ -36,7 +36,7 @@ public class Run  {
 
 
             System.out.print("Training The Network...");
-            NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 0.0000001f, Utils.CYCLE_LIMIT);
+            NN.autoTrainNetwork(myTrainingInputs, myTrainingOutputs, 8.000f, Utils.CYCLE_LIMIT);
             System.out.println("Train end; " + dataCreator.getImageCounter() + " Images had transformed");
             System.out.println("Minimum:"+Utils.BEST_TRAIN_ERROR+" At Cycle Number: "+Utils.BEST_TRAIN_ERROR_CYCLE);
             System.out.print("Saved The CNN Model....");
@@ -50,11 +50,11 @@ public class Run  {
 
         BufferedImage img = dataCreator.getScaledImage( ImageIO.read(new File("GREEN.jpg")));
         NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
-        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1]+":"+NN.getOutputs()[2] );
+        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1]);
 
          img = dataCreator.getScaledImage( ImageIO.read(new File("RED.JPG")));
         NN.processInputsToOutputs(DataSetCreator.convertImageToArray(img));
-        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+":"+ NN.getOutputs()[1] );
+        System.out.println(" OUTPUT=" +  NN.getOutputs()[0]+ NN.getOutputs()[1]);
     }
 
 }
