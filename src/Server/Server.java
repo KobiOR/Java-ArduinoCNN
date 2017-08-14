@@ -21,15 +21,18 @@ public class Server {
     Server() {
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(9000);
+            serverSocket = new ServerSocket(8888);
             InetAddress ip=InetAddress.getLocalHost();
             ip.getHostAddress();
 
             Socket clientSocket = serverSocket.accept();
+            System.out.print(clientSocket.getKeepAlive());
+
             PrintWriter out =
                     new PrintWriter(clientSocket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                System.out.print(in.read());
+            String s =in.readLine();
+                System.out.print(s);
         } catch (IOException e) {
             e.printStackTrace();
         }
