@@ -16,6 +16,8 @@ import java.util.concurrent.Executors;
  */
 
 public class Server {
+    private ServerSocket server;
+    private ExecutorService executor;
     Server() {
         ServerSocket serverSocket = null;
         try {
@@ -26,9 +28,8 @@ public class Server {
             Socket clientSocket = serverSocket.accept();
             PrintWriter out =
                     new PrintWriter(clientSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(clientSocket.getInputStream()));
-
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                System.out.print(in.read());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,9 +37,8 @@ public class Server {
         {
         }
     }
-    private ServerSocket server;
-    private ExecutorService executor;
-       public void startServer(int maxClientsNum) {
+
+    public void startServer(int maxClientsNum) {
         executor = Executors.newFixedThreadPool(maxClientsNum);
         Thread thread = new Thread(new Runnable() {
 
