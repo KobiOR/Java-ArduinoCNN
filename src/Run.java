@@ -31,7 +31,8 @@ public class Run  {
             System.out.print("Creating Layers...");
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION);
             NN.addLayer(Utils.CNN_DIMENSION, Utils.CNN_DIMENSION * 3);
-           NN.addLayer(Utils.CNN_DIMENSION*3, Utils.CNN_DIMENSION * 2);
+            NN.addLayer(Utils.CNN_DIMENSION*3, Utils.CNN_DIMENSION * 3);
+            NN.addLayer(Utils.CNN_DIMENSION*3, Utils.CNN_DIMENSION * 2);
             NN.addLayer(Utils.CNN_DIMENSION*2  , 2);
 
 

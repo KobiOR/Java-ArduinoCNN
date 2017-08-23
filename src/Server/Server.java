@@ -1,10 +1,11 @@
 package Server;
 
+import javafx.scene.image.ImageView;
+
 import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -15,6 +16,8 @@ import java.util.concurrent.Executors;
 public class Server {
     private ServerSocket server;
     private ExecutorService executor;
+    private ObjectInputStream in;
+    private  ObjectOutputStream out;
     Server() {
         ServerSocket serverSocket = null;
         try {
@@ -23,12 +26,12 @@ public class Server {
             ip.getHostAddress();
 
             Socket clientSocket = serverSocket.accept();
-            ObjectInputStream in = new ObjectInputStream(clientSocket.getInputStream());
+             in = new ObjectInputStream(clientSocket.getInputStream());
+             out = new ObjectOutputStream(clientSocket.getOutputStream());
 
             while (clientSocket.isConnected())
-                if (in.available()>0)
-                    System.out.print(in.readInt());
-
+                if (in.available()>=4)
+                    readImage();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,6 +93,23 @@ public class Server {
 
         });thread.start();
 
+
+
+    }
+    public void readImage(){
+        try {
+            int height =this.in.readInt();
+            int width =this.in.readInt();
+            ImageView image=new ImageView();
+            image.setLayoutX(width);
+            image.setLayoutY(height);
+            for(int i = 0; i <height ; i++) {
+                for(int j = 0; j <width ; j++) {
+                }
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
